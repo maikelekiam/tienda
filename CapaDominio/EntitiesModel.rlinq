@@ -26,6 +26,9 @@
         <orm:field name="pedidos" property="Pedidos" behavior="readwrite" uniqueId="07206aae-6d5b-439f-ba9d-0536ae4be7ac" type="CapaDominio.Pedido">
           <orm:collection element-class="CapaDominio.Pedido" inverse-field="usuario" order-by="" uniqueId="e50ed930-c5de-4522-a78b-8af0ee757a9a" />
         </orm:field>
+        <orm:field name="detallePedidoTemporals" property="DetallePedidoTemporals" behavior="readwrite" uniqueId="3d2f3a8e-e907-45f7-ab81-eddfe4303732" type="CapaDominio.DetallePedidoTemporal">
+          <orm:collection element-class="CapaDominio.DetallePedidoTemporal" inverse-field="usuario" order-by="" uniqueId="39016199-de2f-4a9f-8c22-e36aebda74c1" />
+        </orm:field>
       </orm:class>
       <orm:class name="Producto" uniqueId="a2572841-9b25-4a23-ac4e-3a5ce9df022c">
         <orm:table name="Producto" />
@@ -156,10 +159,19 @@
         <orm:field name="precio" property="Precio" behavior="readwrite" uniqueId="cd82e519-2f04-4aa9-844d-7a0cfe0918f3" type="System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
           <orm:column name="precio" sql-type="numeric" nullable="true" length="18" scale="2" ado-type="Numeric" />
         </orm:field>
+        <orm:field name="idUsuario" property="IdUsuario" behavior="readwrite" uniqueId="1c1e367f-4355-476c-877e-d27f710a3f1c" type="System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="idUsuario" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
+        </orm:field>
         <orm:field name="producto" property="Producto" behavior="readwrite" uniqueId="9a71c815-1ce6-4a77-8df5-ad55c159e031" type="CapaDominio.Producto">
           <orm:reference uniqueId="8fc87639-6552-4932-830f-f957e5c33434" association-name="DetallePedidoTemporalHasProducto">
             <orm:sharedfield name="idProducto" target-class="CapaDominio.Producto" target-field="idProducto" />
             <orm:constraint name="FK_DetallePedidoTemporal_Producto" delete-action="dbdefaultrule" destination-table="Producto" />
+          </orm:reference>
+        </orm:field>
+        <orm:field name="usuario" property="Usuario" behavior="readwrite" uniqueId="762d59db-25d8-4173-8933-719f146725dc" type="CapaDominio.Usuario">
+          <orm:reference uniqueId="39016199-de2f-4a9f-8c22-e36aebda74c1" association-name="DetallePedidoTemporalHasUsuario">
+            <orm:sharedfield name="idUsuario" target-class="CapaDominio.Usuario" target-field="idUsuario" />
+            <orm:constraint name="FK_DetallePedidoTemporal_Usuario" delete-action="dbdefaultrule" destination-table="Usuario" />
           </orm:reference>
         </orm:field>
       </orm:class>
@@ -207,8 +219,12 @@
         <orm:column name="idProducto" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
         <orm:column name="cantidad" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
         <orm:column name="precio" sql-type="numeric" nullable="true" length="18" scale="2" ado-type="Numeric" />
+        <orm:column name="idUsuario" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
         <orm:constraint name="FK_DetallePedidoTemporal_Producto" delete-action="dbdefaultrule" destination-table="Producto">
           <orm:column name="idProducto" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
+        </orm:constraint>
+        <orm:constraint name="FK_DetallePedidoTemporal_Usuario" delete-action="dbdefaultrule" destination-table="Usuario">
+          <orm:column name="idUsuario" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
         </orm:constraint>
       </orm:table>
       <orm:procedure name="fn_diagramobjects" is-function="true" return-type="int">
@@ -258,6 +274,9 @@
       <navigationalProperties>
         <classHasNavigationalProperties Id="0d9c6ead-9b34-4a00-b406-9b76ae8fc3fa">
           <NavigationalProperty Id="07206aae-6d5b-439f-ba9d-0536ae4be7ac" name="Pedidos" type="IList&lt;Pedido&gt;" label="Pedidos : IList&lt;Pedido&gt;" nullable="true" kind="Persistent" fieldName="pedidos" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+        <classHasNavigationalProperties Id="8affb3cc-976e-4abd-af1b-b22c1ea54fbb">
+          <NavigationalProperty Id="3d2f3a8e-e907-45f7-ab81-eddfe4303732" name="DetallePedidoTemporals" type="IList&lt;DetallePedidoTemporal&gt;" label="DetallePedidoTemporals : IList&lt;DetallePedidoTemporal&gt;" nullable="true" kind="Persistent" fieldName="detallePedidoTemporals" isDependent="false" isManaged="false" />
         </classHasNavigationalProperties>
       </navigationalProperties>
     </DomainClass>
@@ -355,6 +374,7 @@
       <Property Id="0c967027-434b-490b-af48-8a9f8bc58d4a" name="Cantidad" type="Int32" label="Cantidad : Int32" nullable="true" kind="Persistent" fieldName="cantidad" />
       <Property Id="7d689982-1999-42fd-8a2f-794d9303dcdb" name="IdProducto" type="Int32" label="IdProducto : Int32" nullable="true" kind="Persistent" fieldName="idProducto" />
       <Property Id="cd82e519-2f04-4aa9-844d-7a0cfe0918f3" name="Precio" type="Decimal" label="Precio : Decimal" nullable="true" kind="Persistent" fieldName="precio" />
+      <Property Id="1c1e367f-4355-476c-877e-d27f710a3f1c" name="IdUsuario" type="Int32" label="IdUsuario : Int32" nullable="true" kind="Persistent" fieldName="idUsuario" />
       <AssociationTargets>
         <Association Id="8fc87639-6552-4932-830f-f957e5c33434" SourceMultiplicity="ZeroOne" name="DetallePedidoTemporalHasProducto">
           <DomainClassMoniker name="/ModeloDeDominio/Producto" />
@@ -369,10 +389,26 @@
             </associationDefinesSourceProperty>
           </sourceNavigationalProperty>
         </Association>
+        <Association Id="39016199-de2f-4a9f-8c22-e36aebda74c1" SourceMultiplicity="ZeroOne" name="DetallePedidoTemporalHasUsuario">
+          <DomainClassMoniker name="/ModeloDeDominio/Usuario" />
+          <targetNavigationalProperty>
+            <associationDefinesTargetProperty Id="e95943a3-8eef-4c29-8379-1a8d16f7ae75">
+              <NavigationalPropertyMoniker name="/ModeloDeDominio/Usuario/DetallePedidoTemporals" />
+            </associationDefinesTargetProperty>
+          </targetNavigationalProperty>
+          <sourceNavigationalProperty>
+            <associationDefinesSourceProperty Id="1bcfc649-6b84-432d-b38c-907fb8ef4914">
+              <NavigationalPropertyMoniker name="/ModeloDeDominio/DetallePedidoTemporal/Usuario" />
+            </associationDefinesSourceProperty>
+          </sourceNavigationalProperty>
+        </Association>
       </AssociationTargets>
       <navigationalProperties>
         <classHasNavigationalProperties Id="b2e67145-6ef0-4ba8-a87d-7d6dc4e9ad08">
           <NavigationalProperty Id="9a71c815-1ce6-4a77-8df5-ad55c159e031" name="Producto" type="Producto" label="Producto : Producto" nullable="true" kind="Persistent" fieldName="producto" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+        <classHasNavigationalProperties Id="b85c1505-93c5-4ed3-af34-cf50b74aeeaf">
+          <NavigationalProperty Id="762d59db-25d8-4173-8933-719f146725dc" name="Usuario" type="Usuario" label="Usuario : Usuario" nullable="true" kind="Persistent" fieldName="usuario" isDependent="false" isManaged="false" />
         </classHasNavigationalProperties>
       </navigationalProperties>
     </DomainClass>

@@ -71,15 +71,22 @@ namespace Tienda
         {
             if (txtNumeroPedido.Text != "")
             {
-                GuardarPedido();
-                LimpiarPedido();
-                detallePedidoTemporalNego.BorrarListaDetallePedidoTemporal();
-                Response.Redirect("Default.aspx");
+                listaTemporal = detallePedidoTemporalNego.MostrarDetallePedidosTemporal().ToList();
+
+                if (listaTemporal.Count == 0)
+                {
+                    Page.ClientScript.RegisterStartupScript(this.GetType(), "Correct", "alert('El Carro no debe estar vacio.')", true);
+                }
+                else
+                {
+                    GuardarPedido();
+                    LimpiarPedido();
+                    detallePedidoTemporalNego.BorrarListaDetallePedidoTemporal();
+                    Response.Redirect("Default.aspx");
+                }
             }
             else
             {
-                //Mostrar Aviso
-                //txtNumeroPedido.Text = "*COMPLETAR";
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "Correct", "alert('Ingrese Codigo de Pedido.')", true);
             }
         }

@@ -85,6 +85,15 @@ namespace CapaDominio
 			}
 		}
 		
+		private IList<DetallePedidoTemporal> detallePedidoTemporals = new List<DetallePedidoTemporal>();
+		public virtual IList<DetallePedidoTemporal> DetallePedidoTemporals
+		{
+			get
+			{
+				return this.detallePedidoTemporals;
+			}
+		}
+		
 	}
 }
 #pragma warning restore 1591

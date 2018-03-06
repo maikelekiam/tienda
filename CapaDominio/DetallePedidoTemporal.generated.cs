@@ -76,6 +76,19 @@ namespace CapaDominio
 			}
 		}
 		
+		private int? idUsuario;
+		public virtual int? IdUsuario
+		{
+			get
+			{
+				return this.idUsuario;
+			}
+			set
+			{
+				this.idUsuario = value;
+			}
+		}
+		
 		private Producto producto;
 		public virtual Producto Producto
 		{
@@ -86,6 +99,19 @@ namespace CapaDominio
 			set
 			{
 				this.producto = value;
+			}
+		}
+		
+		private Usuario usuario;
+		public virtual Usuario Usuario
+		{
+			get
+			{
+				return this.usuario;
+			}
+			set
+			{
+				this.usuario = value;
 			}
 		}
 		
