@@ -1,0 +1,391 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DomainModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="2.0.0.0" name="ModeloDeDominio" namespace="CapaDominio" showPropertiesCompartment="true" xmlns="http://www.telerik.com/ORM">
+  <orm:orm name="ModeloDeDominio" backend="mssql" default-schema="dbo" xmlns:orm="http://tempuri.org/ORM">
+    <orm:namespace name="CapaDominio" default="true">
+      <orm:class name="Usuario" uniqueId="99bd2e7e-7bea-40a8-b4bd-34572b256d52">
+        <orm:table name="Usuario" />
+        <orm:identity>
+          <orm:key-generator name="autoinc">
+            <orm:key-generator-member property-name="IdUsuario" />
+          </orm:key-generator>
+          <orm:single-field field-name="idUsuario" />
+        </orm:identity>
+        <orm:concurrency strategy="changed" />
+        <orm:field name="idUsuario" property="IdUsuario" behavior="readwrite" uniqueId="1b7e98c9-704b-42e2-a35b-2bbae8b20a03" type="System.Int32">
+          <orm:column name="idUsuario" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="nombre" property="Nombre" behavior="readwrite" uniqueId="ffe46a21-6489-4c08-959a-54d5a867e0f3" type="System.String">
+          <orm:column name="nombre" sql-type="varchar" nullable="true" length="50" scale="0" ado-type="StringVariableLength" />
+        </orm:field>
+        <orm:field name="contrasenia" property="Contrasenia" behavior="readwrite" uniqueId="aed94f78-fa9f-429b-8c9f-2707c6949962" type="System.String">
+          <orm:column name="contrasenia" sql-type="varchar" nullable="true" length="50" scale="0" ado-type="StringVariableLength" />
+        </orm:field>
+        <orm:field name="grupo" property="Grupo" behavior="readwrite" uniqueId="8091d16e-8149-493f-9388-ed858ab699bf" type="System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="grupo" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="pedidos" property="Pedidos" behavior="readwrite" uniqueId="07206aae-6d5b-439f-ba9d-0536ae4be7ac" type="CapaDominio.Pedido">
+          <orm:collection element-class="CapaDominio.Pedido" inverse-field="usuario" order-by="" uniqueId="e50ed930-c5de-4522-a78b-8af0ee757a9a" />
+        </orm:field>
+      </orm:class>
+      <orm:class name="Producto" uniqueId="a2572841-9b25-4a23-ac4e-3a5ce9df022c">
+        <orm:table name="Producto" />
+        <orm:identity>
+          <orm:key-generator name="autoinc">
+            <orm:key-generator-member property-name="IdProducto" />
+          </orm:key-generator>
+          <orm:single-field field-name="idProducto" />
+        </orm:identity>
+        <orm:concurrency strategy="changed" />
+        <orm:field name="idProducto" property="IdProducto" behavior="readwrite" uniqueId="bb7b937f-3da3-4d76-a7c2-aef8ddb74129" type="System.Int32">
+          <orm:column name="idProducto" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="codigo" property="Codigo" behavior="readwrite" uniqueId="2cd3f03a-24d5-44fa-b7c2-d7bcc5373ce8" type="System.String">
+          <orm:column name="codigo" sql-type="varchar" nullable="true" length="50" scale="0" ado-type="StringVariableLength" />
+        </orm:field>
+        <orm:field name="nombre" property="Nombre" behavior="readwrite" uniqueId="6eb30474-bfb0-4d0a-a1f4-a45ac1a40d08" type="System.String">
+          <orm:column name="nombre" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringInfiniteLength" />
+        </orm:field>
+        <orm:field name="precio" property="Precio" behavior="readwrite" uniqueId="bf78e132-bbb6-4557-baa6-acddfcf12d1f" type="System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="precio" sql-type="numeric" nullable="true" length="18" scale="2" ado-type="Numeric" />
+        </orm:field>
+        <orm:field name="stock" property="Stock" behavior="readwrite" uniqueId="04dac838-712f-45e2-a64b-04db16896e08" type="System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="stock" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="detallePedidos" property="DetallePedidos" behavior="readwrite" uniqueId="9561a555-5682-4ab0-b181-168644931eab" type="CapaDominio.DetallePedido">
+          <orm:collection element-class="CapaDominio.DetallePedido" inverse-field="producto" order-by="" uniqueId="f3f40bc1-dd43-44e9-8f80-0a7bdca4fd64" />
+        </orm:field>
+        <orm:field name="detallePedidoTemporals" property="DetallePedidoTemporals" behavior="readwrite" uniqueId="9c466ac8-08bc-4f48-ba52-72fc30dc1eba" type="CapaDominio.DetallePedidoTemporal">
+          <orm:collection element-class="CapaDominio.DetallePedidoTemporal" inverse-field="producto" order-by="" uniqueId="8fc87639-6552-4932-830f-f957e5c33434" />
+        </orm:field>
+      </orm:class>
+      <orm:class name="Pedido" uniqueId="b9003f81-60fb-4ff2-9006-a4da3321389e">
+        <orm:table name="Pedido" />
+        <orm:identity>
+          <orm:key-generator name="autoinc">
+            <orm:key-generator-member property-name="IdPedido" />
+          </orm:key-generator>
+          <orm:single-field field-name="idPedido" />
+        </orm:identity>
+        <orm:concurrency strategy="changed" />
+        <orm:field name="idPedido" property="IdPedido" behavior="readwrite" uniqueId="2207826c-cc4a-4276-a326-43a00e82bdd7" type="System.Int32">
+          <orm:column name="idPedido" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="idUsuario" property="IdUsuario" behavior="readwrite" uniqueId="5b294813-ac9c-4f68-a459-7360c1ebc4ed" type="System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="idUsuario" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="pedidoMes" property="PedidoMes" behavior="readwrite" uniqueId="13ade7f5-087b-4a57-996d-6257c43343d7" type="System.String">
+          <orm:column name="pedidoMes" sql-type="varchar" nullable="true" length="50" scale="0" ado-type="StringVariableLength" />
+        </orm:field>
+        <orm:field name="pedidoDia" property="PedidoDia" behavior="readwrite" uniqueId="5798ad39-180d-45c0-a3d7-3761cd5cf258" type="System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="pedidoDia" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="pedidoAnio" property="PedidoAnio" behavior="readwrite" uniqueId="1ac258fe-d5e9-4feb-8746-3a3ae770271f" type="System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="pedidoAnio" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="numeroPedido" property="NumeroPedido" behavior="readwrite" uniqueId="d12eac30-a8e3-4d63-a119-d3b698bc810b" type="System.String">
+          <orm:column name="numeroPedido" sql-type="varchar" nullable="true" length="50" scale="0" ado-type="StringVariableLength" />
+        </orm:field>
+        <orm:field name="usuario" property="Usuario" behavior="readwrite" uniqueId="e2fa328c-b4e5-4f83-b85d-9f63a9bf8ef1" type="CapaDominio.Usuario">
+          <orm:reference uniqueId="e50ed930-c5de-4522-a78b-8af0ee757a9a" association-name="PedidoHasUsuario">
+            <orm:sharedfield name="idUsuario" target-class="CapaDominio.Usuario" target-field="idUsuario" />
+            <orm:constraint name="FK_Pedido_Usuario" delete-action="dbdefaultrule" destination-table="Usuario" />
+          </orm:reference>
+        </orm:field>
+        <orm:field name="detallePedidos" property="DetallePedidos" behavior="readwrite" uniqueId="d29dc2c1-7106-49ba-a14e-2f5dfebdd432" type="CapaDominio.DetallePedido">
+          <orm:collection element-class="CapaDominio.DetallePedido" inverse-field="pedido" order-by="" uniqueId="48948baf-0b41-461e-b954-56922a056a9b" />
+        </orm:field>
+      </orm:class>
+      <orm:class name="DetallePedido" uniqueId="b8c053b0-3278-4603-b719-9dbdc52e804d">
+        <orm:table name="DetallePedido" />
+        <orm:identity>
+          <orm:key-generator name="autoinc">
+            <orm:key-generator-member property-name="IdDetallePedido" />
+          </orm:key-generator>
+          <orm:multiple-field>
+            <orm:single-field field-name="idDetallePedido" />
+            <orm:single-field field-name="idPedido" />
+          </orm:multiple-field>
+        </orm:identity>
+        <orm:concurrency strategy="changed" />
+        <orm:field name="idDetallePedido" property="IdDetallePedido" behavior="readwrite" uniqueId="420379d8-87bd-426d-a934-f41aac3963e6" type="System.Int32">
+          <orm:column name="idDetallePedido" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="idPedido" property="IdPedido" behavior="readwrite" uniqueId="b5a17ec4-ba9a-40a9-bf0c-ef7f0b7dfb31" type="System.Int32">
+          <orm:column name="idPedido" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="idProducto" property="IdProducto" behavior="readwrite" uniqueId="c8e0fa74-acdb-461a-86f4-8134216cdaa6" type="System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="idProducto" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="cantidad" property="Cantidad" behavior="readwrite" uniqueId="8e0080f2-d956-4dca-a7a7-ece81346de5b" type="System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="cantidad" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="precio" property="Precio" behavior="readwrite" uniqueId="08ccd8b8-476d-47a4-bc1c-d9c4bf51a733" type="System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="precio" sql-type="numeric" nullable="true" length="18" scale="2" ado-type="Numeric" />
+        </orm:field>
+        <orm:field name="pedido" property="Pedido" behavior="readwrite" uniqueId="a1dba70d-e418-404c-84a7-89f3f05e26cd" type="CapaDominio.Pedido">
+          <orm:reference uniqueId="48948baf-0b41-461e-b954-56922a056a9b" association-name="DetallePedidoHasPedido">
+            <orm:sharedfield name="idPedido" target-class="CapaDominio.Pedido" target-field="idPedido" />
+            <orm:constraint name="FK_DetallePedido_Pedido" delete-action="dbdefaultrule" destination-table="Pedido" />
+          </orm:reference>
+        </orm:field>
+        <orm:field name="producto" property="Producto" behavior="readwrite" uniqueId="a1de938a-f662-4864-a909-066dd4754889" type="CapaDominio.Producto">
+          <orm:reference uniqueId="f3f40bc1-dd43-44e9-8f80-0a7bdca4fd64" association-name="DetallePedidoHasProducto">
+            <orm:sharedfield name="idProducto" target-class="CapaDominio.Producto" target-field="idProducto" />
+            <orm:constraint name="FK_DetallePedido_Producto" delete-action="dbdefaultrule" destination-table="Producto" />
+          </orm:reference>
+        </orm:field>
+      </orm:class>
+      <orm:class name="DetallePedidoTemporal" uniqueId="76d71341-818d-4982-bfa5-64a44c7b3b63">
+        <orm:table name="DetallePedidoTemporal" />
+        <orm:identity>
+          <orm:key-generator name="autoinc">
+            <orm:key-generator-member property-name="IdDetallePedidoTemporal" />
+          </orm:key-generator>
+          <orm:single-field field-name="idDetallePedidoTemporal" />
+        </orm:identity>
+        <orm:concurrency strategy="changed" />
+        <orm:field name="idDetallePedidoTemporal" property="IdDetallePedidoTemporal" behavior="readwrite" uniqueId="7b5bd744-5e1a-473b-86b7-ed17cf235099" type="System.Int32">
+          <orm:column name="idDetallePedidoTemporal" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="idProducto" property="IdProducto" behavior="readwrite" uniqueId="7d689982-1999-42fd-8a2f-794d9303dcdb" type="System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="idProducto" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="cantidad" property="Cantidad" behavior="readwrite" uniqueId="0c967027-434b-490b-af48-8a9f8bc58d4a" type="System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="cantidad" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="precio" property="Precio" behavior="readwrite" uniqueId="cd82e519-2f04-4aa9-844d-7a0cfe0918f3" type="System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="precio" sql-type="numeric" nullable="true" length="18" scale="2" ado-type="Numeric" />
+        </orm:field>
+        <orm:field name="producto" property="Producto" behavior="readwrite" uniqueId="9a71c815-1ce6-4a77-8df5-ad55c159e031" type="CapaDominio.Producto">
+          <orm:reference uniqueId="8fc87639-6552-4932-830f-f957e5c33434" association-name="DetallePedidoTemporalHasProducto">
+            <orm:sharedfield name="idProducto" target-class="CapaDominio.Producto" target-field="idProducto" />
+            <orm:constraint name="FK_DetallePedidoTemporal_Producto" delete-action="dbdefaultrule" destination-table="Producto" />
+          </orm:reference>
+        </orm:field>
+      </orm:class>
+    </orm:namespace>
+    <orm:schema schema="">
+      <orm:table name="Usuario">
+        <orm:column name="idUsuario" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        <orm:column name="nombre" sql-type="varchar" nullable="true" length="50" scale="0" ado-type="StringVariableLength" />
+        <orm:column name="contrasenia" sql-type="varchar" nullable="true" length="50" scale="0" ado-type="StringVariableLength" />
+        <orm:column name="grupo" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
+      </orm:table>
+      <orm:table name="Producto">
+        <orm:column name="idProducto" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        <orm:column name="codigo" sql-type="varchar" nullable="true" length="50" scale="0" ado-type="StringVariableLength" />
+        <orm:column name="nombre" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringInfiniteLength" />
+        <orm:column name="precio" sql-type="numeric" nullable="true" length="18" scale="2" ado-type="Numeric" />
+        <orm:column name="stock" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
+      </orm:table>
+      <orm:table name="Pedido">
+        <orm:column name="idPedido" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        <orm:column name="idUsuario" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
+        <orm:column name="pedidoMes" sql-type="varchar" nullable="true" length="50" scale="0" ado-type="StringVariableLength" />
+        <orm:column name="pedidoDia" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
+        <orm:column name="pedidoAnio" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
+        <orm:column name="numeroPedido" sql-type="varchar" nullable="true" length="50" scale="0" ado-type="StringVariableLength" />
+        <orm:constraint name="FK_Pedido_Usuario" delete-action="dbdefaultrule" destination-table="Usuario">
+          <orm:column name="idUsuario" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
+        </orm:constraint>
+      </orm:table>
+      <orm:table name="DetallePedido">
+        <orm:column name="idDetallePedido" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        <orm:column name="idPedido" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" ado-type="Int32" />
+        <orm:column name="idProducto" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
+        <orm:column name="cantidad" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
+        <orm:column name="precio" sql-type="numeric" nullable="true" length="18" scale="2" ado-type="Numeric" />
+        <orm:constraint name="FK_DetallePedido_Pedido" delete-action="dbdefaultrule" destination-table="Pedido">
+          <orm:column name="idPedido" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" ado-type="Int32" />
+        </orm:constraint>
+        <orm:constraint name="FK_DetallePedido_Producto" delete-action="dbdefaultrule" destination-table="Producto">
+          <orm:column name="idProducto" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
+        </orm:constraint>
+      </orm:table>
+      <orm:table name="DetallePedidoTemporal">
+        <orm:column name="idDetallePedidoTemporal" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        <orm:column name="idProducto" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
+        <orm:column name="cantidad" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
+        <orm:column name="precio" sql-type="numeric" nullable="true" length="18" scale="2" ado-type="Numeric" />
+        <orm:constraint name="FK_DetallePedidoTemporal_Producto" delete-action="dbdefaultrule" destination-table="Producto">
+          <orm:column name="idProducto" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
+        </orm:constraint>
+      </orm:table>
+      <orm:procedure name="fn_diagramobjects" is-function="true" return-type="int">
+        <orm:result-sets />
+      </orm:procedure>
+    </orm:schema>
+    <orm:relational-naming-settings>
+      <orm:source-strategy>Property</orm:source-strategy>
+      <orm:remove-camel-case>False</orm:remove-camel-case>
+    </orm:relational-naming-settings>
+  </orm:orm>
+  <ModelSettings xmlns="">
+    <AppConfigConnectionPropertyName>TiendaConnection</AppConfigConnectionPropertyName>
+    <AppConfigConnectionString>data source=COPADE_077\SQLEXPRESS;initial catalog=tienda;integrated security=True</AppConfigConnectionString>
+    <InitialCatalog>tienda</InitialCatalog>
+    <NamingSettings>
+      <ClassRules>
+        <CaseMode>PascalCase</CaseMode>
+        <PluralizationMode>Singularize</PluralizationMode>
+      </ClassRules>
+      <FieldRules>
+        <CaseMode>CamelCase</CaseMode>
+      </FieldRules>
+      <PropertyRules>
+        <CaseMode>PascalCase</CaseMode>
+      </PropertyRules>
+      <NavigationPropertyRules />
+    </NamingSettings>
+    <CodeGenerationSettings>
+      <OutputProjectName>CapaDominio</OutputProjectName>
+      <MappingDefinitionType>Xml</MappingDefinitionType>
+    </CodeGenerationSettings>
+    <SchemaUpdateSettings />
+    <BackendConfigurationSettings>
+      <BackendConfiguration>
+        <Backend>MsSql</Backend>
+        <ProviderName>System.Data.SqlClient</ProviderName>
+      </BackendConfiguration>
+    </BackendConfigurationSettings>
+  </ModelSettings>
+  <Types>
+    <DomainClass Id="99bd2e7e-7bea-40a8-b4bd-34572b256d52" name="Usuario" namespace="CapaDominio" showPropertiesCompartment="true" identityMechanism="DatabaseServerCalculated" concurrencyMode="Changed" showNavigationCompartment="true" showImplementationCompartment="true" identityMechanismMember="IdUsuario">
+      <Property Id="1b7e98c9-704b-42e2-a35b-2bbae8b20a03" name="IdUsuario" type="Int32" label="IdUsuario : Int32" kind="Persistent" identity="true" fieldName="idUsuario" />
+      <Property Id="aed94f78-fa9f-429b-8c9f-2707c6949962" name="Contrasenia" label="Contrasenia : String" kind="Persistent" fieldName="contrasenia" />
+      <Property Id="8091d16e-8149-493f-9388-ed858ab699bf" name="Grupo" type="Int32" label="Grupo : Int32" nullable="true" kind="Persistent" fieldName="grupo" />
+      <Property Id="ffe46a21-6489-4c08-959a-54d5a867e0f3" name="Nombre" label="Nombre : String" kind="Persistent" fieldName="nombre" />
+      <navigationalProperties>
+        <classHasNavigationalProperties Id="0d9c6ead-9b34-4a00-b406-9b76ae8fc3fa">
+          <NavigationalProperty Id="07206aae-6d5b-439f-ba9d-0536ae4be7ac" name="Pedidos" type="IList&lt;Pedido&gt;" label="Pedidos : IList&lt;Pedido&gt;" nullable="true" kind="Persistent" fieldName="pedidos" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+      </navigationalProperties>
+    </DomainClass>
+    <DomainClass Id="a2572841-9b25-4a23-ac4e-3a5ce9df022c" name="Producto" namespace="CapaDominio" showPropertiesCompartment="true" identityMechanism="DatabaseServerCalculated" concurrencyMode="Changed" showNavigationCompartment="true" showImplementationCompartment="true" identityMechanismMember="IdProducto">
+      <Property Id="bb7b937f-3da3-4d76-a7c2-aef8ddb74129" name="IdProducto" type="Int32" label="IdProducto : Int32" kind="Persistent" identity="true" fieldName="idProducto" />
+      <Property Id="2cd3f03a-24d5-44fa-b7c2-d7bcc5373ce8" name="Codigo" label="Codigo : String" kind="Persistent" fieldName="codigo" />
+      <Property Id="6eb30474-bfb0-4d0a-a1f4-a45ac1a40d08" name="Nombre" label="Nombre : String" kind="Persistent" fieldName="nombre" />
+      <Property Id="bf78e132-bbb6-4557-baa6-acddfcf12d1f" name="Precio" type="Decimal" label="Precio : Decimal" nullable="true" kind="Persistent" fieldName="precio" />
+      <Property Id="04dac838-712f-45e2-a64b-04db16896e08" name="Stock" type="Int32" label="Stock : Int32" nullable="true" kind="Persistent" fieldName="stock" />
+      <navigationalProperties>
+        <classHasNavigationalProperties Id="008ec28a-1697-4fba-b0e2-cc7565f11b41">
+          <NavigationalProperty Id="9561a555-5682-4ab0-b181-168644931eab" name="DetallePedidos" type="IList&lt;DetallePedido&gt;" label="DetallePedidos : IList&lt;DetallePedido&gt;" nullable="true" kind="Persistent" fieldName="detallePedidos" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+        <classHasNavigationalProperties Id="322b1e82-8234-4930-87e0-ec0b72a9dd5b">
+          <NavigationalProperty Id="9c466ac8-08bc-4f48-ba52-72fc30dc1eba" name="DetallePedidoTemporals" type="IList&lt;DetallePedidoTemporal&gt;" label="DetallePedidoTemporals : IList&lt;DetallePedidoTemporal&gt;" nullable="true" kind="Persistent" fieldName="detallePedidoTemporals" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+      </navigationalProperties>
+    </DomainClass>
+    <DomainClass Id="b9003f81-60fb-4ff2-9006-a4da3321389e" name="Pedido" namespace="CapaDominio" showPropertiesCompartment="true" identityMechanism="DatabaseServerCalculated" concurrencyMode="Changed" showNavigationCompartment="true" showImplementationCompartment="true" identityMechanismMember="IdPedido">
+      <Property Id="2207826c-cc4a-4276-a326-43a00e82bdd7" name="IdPedido" type="Int32" label="IdPedido : Int32" kind="Persistent" identity="true" fieldName="idPedido" />
+      <Property Id="5b294813-ac9c-4f68-a459-7360c1ebc4ed" name="IdUsuario" type="Int32" label="IdUsuario : Int32" nullable="true" kind="Persistent" fieldName="idUsuario" />
+      <Property Id="13ade7f5-087b-4a57-996d-6257c43343d7" name="PedidoMes" label="PedidoMes : String" kind="Persistent" fieldName="pedidoMes" />
+      <Property Id="5798ad39-180d-45c0-a3d7-3761cd5cf258" name="PedidoDia" type="Int32" label="PedidoDia : Int32" nullable="true" kind="Persistent" fieldName="pedidoDia" />
+      <Property Id="1ac258fe-d5e9-4feb-8746-3a3ae770271f" name="PedidoAnio" type="Int32" label="PedidoAnio : Int32" nullable="true" kind="Persistent" fieldName="pedidoAnio" />
+      <Property Id="d12eac30-a8e3-4d63-a119-d3b698bc810b" name="NumeroPedido" label="NumeroPedido : String" kind="Persistent" fieldName="numeroPedido" />
+      <AssociationTargets>
+        <Association Id="e50ed930-c5de-4522-a78b-8af0ee757a9a" SourceMultiplicity="ZeroOne" name="PedidoHasUsuario">
+          <DomainClassMoniker name="/ModeloDeDominio/Usuario" />
+          <targetNavigationalProperty>
+            <associationDefinesTargetProperty Id="507c5329-f5f9-4956-8c62-f25817368bb9">
+              <NavigationalPropertyMoniker name="/ModeloDeDominio/Usuario/Pedidos" />
+            </associationDefinesTargetProperty>
+          </targetNavigationalProperty>
+          <sourceNavigationalProperty>
+            <associationDefinesSourceProperty Id="01fe8466-e248-4847-a121-9b5156ac46f9">
+              <NavigationalPropertyMoniker name="/ModeloDeDominio/Pedido/Usuario" />
+            </associationDefinesSourceProperty>
+          </sourceNavigationalProperty>
+        </Association>
+      </AssociationTargets>
+      <navigationalProperties>
+        <classHasNavigationalProperties Id="77cb57a0-82b2-4df7-9956-e662e80087bf">
+          <NavigationalProperty Id="e2fa328c-b4e5-4f83-b85d-9f63a9bf8ef1" name="Usuario" type="Usuario" label="Usuario : Usuario" nullable="true" kind="Persistent" fieldName="usuario" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+        <classHasNavigationalProperties Id="6af2d39f-13e6-429f-a06a-05e83ee2a676">
+          <NavigationalProperty Id="d29dc2c1-7106-49ba-a14e-2f5dfebdd432" name="DetallePedidos" type="IList&lt;DetallePedido&gt;" label="DetallePedidos : IList&lt;DetallePedido&gt;" nullable="true" kind="Persistent" fieldName="detallePedidos" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+      </navigationalProperties>
+    </DomainClass>
+    <DomainClass Id="b8c053b0-3278-4603-b719-9dbdc52e804d" name="DetallePedido" namespace="CapaDominio" showPropertiesCompartment="true" identityMechanism="DatabaseServerCalculated" concurrencyMode="Changed" showNavigationCompartment="true" showImplementationCompartment="true" identityMechanismMember="IdDetallePedido">
+      <Property Id="420379d8-87bd-426d-a934-f41aac3963e6" name="IdDetallePedido" type="Int32" label="IdDetallePedido : Int32" kind="Persistent" identity="true" fieldName="idDetallePedido" />
+      <Property Id="b5a17ec4-ba9a-40a9-bf0c-ef7f0b7dfb31" name="IdPedido" type="Int32" label="IdPedido : Int32" kind="Persistent" identity="true" fieldName="idPedido" />
+      <Property Id="8e0080f2-d956-4dca-a7a7-ece81346de5b" name="Cantidad" type="Int32" label="Cantidad : Int32" nullable="true" kind="Persistent" fieldName="cantidad" />
+      <Property Id="c8e0fa74-acdb-461a-86f4-8134216cdaa6" name="IdProducto" type="Int32" label="IdProducto : Int32" nullable="true" kind="Persistent" fieldName="idProducto" />
+      <Property Id="08ccd8b8-476d-47a4-bc1c-d9c4bf51a733" name="Precio" type="Decimal" label="Precio : Decimal" nullable="true" kind="Persistent" fieldName="precio" />
+      <AssociationTargets>
+        <Association Id="48948baf-0b41-461e-b954-56922a056a9b" SourceMultiplicity="One" name="DetallePedidoHasPedido">
+          <DomainClassMoniker name="/ModeloDeDominio/Pedido" />
+          <targetNavigationalProperty>
+            <associationDefinesTargetProperty Id="2e755e69-a736-403e-b1eb-b9642460db11">
+              <NavigationalPropertyMoniker name="/ModeloDeDominio/Pedido/DetallePedidos" />
+            </associationDefinesTargetProperty>
+          </targetNavigationalProperty>
+          <sourceNavigationalProperty>
+            <associationDefinesSourceProperty Id="915e2d14-830d-4a52-ad51-b02ebafb824a">
+              <NavigationalPropertyMoniker name="/ModeloDeDominio/DetallePedido/Pedido" />
+            </associationDefinesSourceProperty>
+          </sourceNavigationalProperty>
+        </Association>
+        <Association Id="f3f40bc1-dd43-44e9-8f80-0a7bdca4fd64" SourceMultiplicity="ZeroOne" name="DetallePedidoHasProducto">
+          <DomainClassMoniker name="/ModeloDeDominio/Producto" />
+          <targetNavigationalProperty>
+            <associationDefinesTargetProperty Id="e1800f88-fe8b-482c-bdf4-b16042ebd797">
+              <NavigationalPropertyMoniker name="/ModeloDeDominio/Producto/DetallePedidos" />
+            </associationDefinesTargetProperty>
+          </targetNavigationalProperty>
+          <sourceNavigationalProperty>
+            <associationDefinesSourceProperty Id="b113175b-c3d2-454a-8e7f-957688310f11">
+              <NavigationalPropertyMoniker name="/ModeloDeDominio/DetallePedido/Producto" />
+            </associationDefinesSourceProperty>
+          </sourceNavigationalProperty>
+        </Association>
+      </AssociationTargets>
+      <navigationalProperties>
+        <classHasNavigationalProperties Id="64d4aaab-a599-428c-85e7-1b8c6653974f">
+          <NavigationalProperty Id="a1dba70d-e418-404c-84a7-89f3f05e26cd" name="Pedido" type="Pedido" label="Pedido : Pedido" nullable="true" kind="Persistent" fieldName="pedido" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+        <classHasNavigationalProperties Id="fa64f76b-d719-4428-8c62-2e6e624fd9ea">
+          <NavigationalProperty Id="a1de938a-f662-4864-a909-066dd4754889" name="Producto" type="Producto" label="Producto : Producto" nullable="true" kind="Persistent" fieldName="producto" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+      </navigationalProperties>
+    </DomainClass>
+    <DomainClass Id="76d71341-818d-4982-bfa5-64a44c7b3b63" name="DetallePedidoTemporal" namespace="CapaDominio" showPropertiesCompartment="true" identityMechanism="DatabaseServerCalculated" concurrencyMode="Changed" showNavigationCompartment="true" showImplementationCompartment="true" identityMechanismMember="IdDetallePedidoTemporal">
+      <Property Id="7b5bd744-5e1a-473b-86b7-ed17cf235099" name="IdDetallePedidoTemporal" type="Int32" label="IdDetallePedidoTemporal : Int32" kind="Persistent" identity="true" fieldName="idDetallePedidoTemporal" />
+      <Property Id="0c967027-434b-490b-af48-8a9f8bc58d4a" name="Cantidad" type="Int32" label="Cantidad : Int32" nullable="true" kind="Persistent" fieldName="cantidad" />
+      <Property Id="7d689982-1999-42fd-8a2f-794d9303dcdb" name="IdProducto" type="Int32" label="IdProducto : Int32" nullable="true" kind="Persistent" fieldName="idProducto" />
+      <Property Id="cd82e519-2f04-4aa9-844d-7a0cfe0918f3" name="Precio" type="Decimal" label="Precio : Decimal" nullable="true" kind="Persistent" fieldName="precio" />
+      <AssociationTargets>
+        <Association Id="8fc87639-6552-4932-830f-f957e5c33434" SourceMultiplicity="ZeroOne" name="DetallePedidoTemporalHasProducto">
+          <DomainClassMoniker name="/ModeloDeDominio/Producto" />
+          <targetNavigationalProperty>
+            <associationDefinesTargetProperty Id="5940881b-e50d-4f39-98ce-0b1329b490d2">
+              <NavigationalPropertyMoniker name="/ModeloDeDominio/Producto/DetallePedidoTemporals" />
+            </associationDefinesTargetProperty>
+          </targetNavigationalProperty>
+          <sourceNavigationalProperty>
+            <associationDefinesSourceProperty Id="0958202b-60d6-496f-8000-32f888fd3777">
+              <NavigationalPropertyMoniker name="/ModeloDeDominio/DetallePedidoTemporal/Producto" />
+            </associationDefinesSourceProperty>
+          </sourceNavigationalProperty>
+        </Association>
+      </AssociationTargets>
+      <navigationalProperties>
+        <classHasNavigationalProperties Id="b2e67145-6ef0-4ba8-a87d-7d6dc4e9ad08">
+          <NavigationalProperty Id="9a71c815-1ce6-4a77-8df5-ad55c159e031" name="Producto" type="Producto" label="Producto : Producto" nullable="true" kind="Persistent" fieldName="producto" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+      </navigationalProperties>
+    </DomainClass>
+  </Types>
+  <domainContext>
+    <domainModelHasDomainContext Id="643b8587-ec65-422f-a9d3-7b6d62faa7c2">
+      <domainContainer name="ModeloDeDominio" namespace="CapaDominio" showPropertiesCompartment="true">
+        <entitySetProperty name="Usuarios" namespace="CapaDominio" type="Usuario" label="Usuarios : IQueryable&lt;CapaDominio.Usuario&gt;" />
+        <entitySetProperty name="Productos" namespace="CapaDominio" type="Producto" label="Productos : IQueryable&lt;CapaDominio.Producto&gt;" />
+        <entitySetProperty name="Pedidos" namespace="CapaDominio" type="Pedido" label="Pedidos : IQueryable&lt;CapaDominio.Pedido&gt;" />
+        <entitySetProperty name="DetallePedidos" namespace="CapaDominio" type="DetallePedido" label="DetallePedidos : IQueryable&lt;CapaDominio.DetallePedido&gt;" />
+        <entitySetProperty name="DetallePedidoTemporals" namespace="CapaDominio" type="DetallePedidoTemporal" label="DetallePedidoTemporals : IQueryable&lt;CapaDominio.DetallePedidoTemporal&gt;" />
+      </domainContainer>
+    </domainModelHasDomainContext>
+  </domainContext>
+</DomainModel>

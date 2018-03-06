@@ -1,0 +1,216 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="Tienda.SiteMaster" %>
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head runat="server">
+    <meta charset="UTF-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href="image/favicon.png" rel="icon" />
+    <title>Tienda</title>
+    <meta name="description" content="Responsive and clean html template design for any kind of ecommerce webshop">
+    <!-- CSS Part Start-->
+    <link rel="stylesheet" type="text/css" href="js/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/font-awesome/css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/stylesheet.css" />
+    <link rel="stylesheet" type="text/css" href="css/owl.carousel.css" />
+    <link rel="stylesheet" type="text/css" href="css/owl.transitions.css" />
+    <link rel="stylesheet" type="text/css" href="css/responsive.css" />
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans' type='text/css'>
+    <link href="css/bootstrap-select.css" rel="stylesheet" />
+    <link href="css/alineado.css" rel="stylesheet" />
+    <!-- CSS Part End-->
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/bundles/modernizr") %>
+    </asp:PlaceHolder>
+
+
+    <script type="text/javascript">
+
+        // Guardando la URL de la imagen del botón imprimir. Esta imagen es una copia de la imagen mostrada en el ReportViewer, guardada en la carpeta de imágenes de la aplicación web.
+        var urlImg = '<%=Page.ResolveUrl("~/Content/themes/base/minified/images/Print.gif") %>';
+
+        // Función que se ejecuta una vez se ha terminado de cargar el DOM de la página web en el navegador
+        $(document).ready(function () {
+            colocarBtnImprimir();    // Colocar el botón de imprimir en la barra de herramientas del ReportViewer
+            $("#BtnImprimir").click(imprimirDiv);  // Asignando la función "imprimirDiv" al evento click del botón de impresión
+        });
+
+        // Esta función coloca el botón de imprimir en la barra de herramientas del ReportViewer
+        function colocarBtnImprimir() {
+            var jqoBarraRpt = $('div#ReportViewer1_ctl05>div:first-child');    // Buscando el div que contiene la barra de herramientas del RportViewer
+
+            if (jqoBarraRpt && jqoBarraRpt.length > 0    // Verificando que el DIV barra de herramientas fue encontrado,
+                && jqoBarraRpt.find('#BtnImprimir').length <= 0) {    // y verificando que el botón de imprimir no existe ya
+
+                // Colocando el botón de impresión, con una estructura similar a la que tiene el botón original en el ReportViewer
+                jqoBarraRpt.append('<table cellpadding="0" cellspacing="0" ToolbarSpacer="true" style="display:inline;width:10px;"><tr><td></td></tr></table><div style="display:inline;font-family:Verdana;font-size:8pt;vertical-align:top;"><table cellpadding="0" cellspacing="0" style="display:inline;"><tr><td height="28px"><div"><div id="BtnImprimir"><table title="Print"><tr><td><img title="Print" src="' + urlImg + '" alt="Print" style="border-style:None;height:16px;width:16px;" /></td></tr></table></div><div disabled="disabled" style="display:none;border:1px transparent Solid;"><table title="Print"><tr><td><input type="image" disabled="disabled" title="Print" src="' + urlImg + '" alt="Print" style="border-style:None;height:16px;width:16px;cursor:default;" /></td></tr></table></div></div></td></tr></table></div>');
+            }
+        }
+
+        // Función que se encarga de imprimir el reporte
+        function imprimirDiv() {
+            var divImprimir = $("div[id$='ReportDiv']").parent();    // Obteniendo el DIV que contiene el reporte a imprimir
+            var newWin = window.open();    // Abriendo una nueva ventana del navegador
+            newWin.document.open();    // Abriendo el documento de la nueva ventana, para escribir su contenido
+            newWin.document.write('<html><head><style type="text/css">' + getAllStyleSheetsAsText() + '</style></head><body>' + divImprimir.html() + '</body>');
+            newWin.document.close();
+            newWin.print();
+            newWin.close();
+        }
+
+        function getAllStyleSheetsAsText() {
+            var cssText = '';
+            var sheets = document.styleSheets;
+            for (var c = 0; c < sheets.length; c++) {
+                var sheet = sheets[c];
+                if ((sheet.ownerNode || sheet.owningElement).id.endsWith('_ReportControl_styles')) {
+                    var rules = sheet.rules || sheet.cssRules;
+                    for (var r = 0; r < rules.length; r++) {
+                        var cssRule = rules[r];
+                        if ($.browser.msie) {
+                            var cssText = cssText + cssRule.selectorText + '{' + cssRule.style.cssText.toLowerCase() + '}';
+                        } else {
+                            var cssText = cssText + cssRule.cssText;
+                        }
+                    }
+                }
+            }
+            return cssText;
+        }
+
+
+    </script>
+
+
+
+
+
+
+
+
+</head>
+<body>
+    <form runat="server" class="form-horizontal form-control">
+        <asp:ScriptManager runat="server">
+            <Scripts>
+            </Scripts>
+        </asp:ScriptManager>
+
+
+        <div class="wrapper-wide">
+            <div id="header">
+                <!-- Top Bar Start-->
+                <nav id="top" class="htop">
+                    <div class="container">
+                        <div class="row">
+                            <span class="drop-icon visible-sm visible-xs"><i class="fa fa-align-justify"></i></span>
+                            <div class="pull-left flip left-top">
+                                <div class="links">
+                                    <ul>
+                                        <li class="mobile"><i class="fa fa-phone"></i>Tel: 299 154 010 022</li>
+                                        <li class="email"><a href="mailto:ventas@distribuidoragm.com.ar"><i class="fa fa-envelope"></i>Email: ventas@distribuidoragm.com.ar</a></li>
+                                    </ul>
+                                </div>
+                                <div id="language" class="btn-group">
+                                    <button class="btn-link dropdown-toggle" data-toggle="dropdown">
+                                        <span>
+                                            <img src="image/flags/gb.png" alt="English" title="English">Idioma <i class="fa fa-caret-down"></i></span>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <button class="btn btn-link btn-block language-select" type="button" name="GB">
+                                                <img src="image/flags/gb.png" alt="English" title="English" />
+                                                English</button>
+                                        </li>
+                                        <li>
+                                            <button class="btn btn-link btn-block language-select" type="button" name="GB">
+                                                <img src="image/flags/ar.png" alt="Arabic" title="Arabic" />
+                                                Español</button>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div id="top-links" class="nav pull-right flip">
+                                <ul>
+                                    <%--<li><a href="login.html">Login</a></li>
+                                    <li><a href="register.html">Register</a></li>--%>
+                                    <li>
+                                        <asp:Label ID="lbl18" runat="server"></asp:Label>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+                <!-- Top Bar End-->
+                <!-- Header Start-->
+                <header class="header-row">
+                    <div class="container">
+                        <div class="table-container">
+                            <!-- Logo Start -->
+                            <div class="col-table-cell col-lg-6 col-md-6 col-sm-12 col-xs-12 inner">
+                                <div id="logo">
+                                    <a href="Default.aspx">
+                                        <img class="img-responsive" src="image/logo.png" title="MarketShop" alt="MarketShop" /></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </header>
+                <!-- Header End-->
+                <!-- Main Menu Start-->
+                <div class="container">
+                    <nav id="menu" class="navbar">
+                        <div class="navbar-header"><span class="visible-xs visible-sm">Menu <b></b></span></div>
+                        <div class="collapse navbar-collapse navbar-ex1-collapse">
+                            <ul class="nav navbar-nav navbar-static-top">
+                                <li><a class="home_link" title="Inicio" href="Default.aspx"><span>Inicio</span></a></li>
+                                <li class="contact-link"><a href="Default.aspx">Presupuesto</a></li>
+                                <li class="dropdown information-link"><a>Paginas</a>
+                                    <div class="dropdown-menu">
+                                        <ul>
+                                            <li><a href="Default.aspx">Realizar Presupuesto</a></li>
+                                            <li><a href="Contact.aspx">Contacto</a></li>
+                                            <li><a href="About.aspx">Nosotros</a></li>
+                                            <li><a href="RealizarPedido.aspx">Carrito (Pedido Actual)</a></li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="contact-link"><a href="Contact.aspx">Contacto</a></li>
+                                <li class="contact-link"><a href="About.aspx">Nosotros</a></li>
+                                <li class="contact-link"><a href="RealizarPedido.aspx">Carrito Actual</a></li>
+                                <li class="contact-link"><a href="ListarPedidos.aspx">Pedidos Realizados</a></li>
+                                <li class="custom-link-right"><a href="RealizarPedido.aspx">Realizar PEDIDO</a></li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+                <!-- Main Menu End-->
+            </div>
+        </div>
+
+        <div class="container body-content">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+            </asp:ContentPlaceHolder>
+            <br />
+            <br />
+            <br />
+            <footer>
+            </footer>
+        </div>
+    </form>
+
+    <!-- JS Part Start-->
+    <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/jquery.easing-1.3.min.js"></script>
+    <script type="text/javascript" src="js/jquery.dcjqaccordion.min.js"></script>
+    <script type="text/javascript" src="js/owl.carousel.min.js"></script>
+    <script type="text/javascript" src="js/custom.js"></script>
+    <script src="js/bootstrap-select.js"></script>
+    <!-- JS Part End-->
+
+</body>
+</html>

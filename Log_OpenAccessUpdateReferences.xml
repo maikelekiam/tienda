@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="_ConvertModelWizard_Files\UpgradeReferences.xslt"?>
+<UpgradeLog>
+  <Events>
+    <Event EventType="Success" Action="Analyze" SourceItem="C:\Users\maikelekiam\Documents\Visual Studio 2013\Projects\Solucion_Tienda\Tienda\Tienda.csproj" Message="Assembly References" />
+    <Event EventType="Success" Action="Analyze" SourceItem="C:\Users\maikelekiam\Documents\Visual Studio 2013\Projects\Solucion_Tienda\Tienda\Tienda.csproj" Message="Project References" />
+    <Event EventType="Success" Action="Analyze" SourceItem="C:\Users\maikelekiam\Documents\Visual Studio 2013\Projects\Solucion_Tienda\Tienda\Tienda.csproj" Message="Import Directives" />
+    <Event EventType="Success" Action="Analyze" SourceItem="C:\Users\maikelekiam\Documents\Visual Studio 2013\Projects\Solucion_Tienda\Tienda\About.aspx" Message="Register Directives" />
+    <Event EventType="Success" Action="Analyze" SourceItem="C:\Users\maikelekiam\Documents\Visual Studio 2013\Projects\Solucion_Tienda\Tienda\About.aspx" Message="Assembly Directives" />
+    <Event EventType="Success" Action="Analyze" SourceItem="C:\Users\maikelekiam\Documents\Visual Studio 2013\Projects\Solucion_Tienda\Tienda\About.aspx" Message="About.aspx" />
+    <Event EventType="Success" Action="Analyze" SourceItem="C:\Users\maikelekiam\Documents\Visual Studio 2013\Projects\Solucion_Tienda\Tienda\Account\Login.aspx" Message="Register Directives" />
+    <Event EventType="Success" Action="Analyze" SourceItem="C:\Users\maikelekiam\Documents\Visual Studio 2013\Projects\Solucion_Tienda\Tienda\Account\Login.aspx" Message="Assembly Directives" />
+    <Event EventType="Success" Action="Analyze" SourceItem="C:\Users\maikelekiam\Documents\Visual Studio 2013\Projects\Solucion_Tienda\Tienda\Account\Login.aspx" Message="Login.aspx" />
+    <Event EventType="Success" Action="Analyze" SourceItem="C:\Users\maikelekiam\Documents\Visual Studio 2013\Projects\Solucion_Tienda\Tienda\Account\Manage.aspx" Message="Register Directives" />
+    <Event EventType="Success" Action="Analyze" SourceItem="C:\Users\maikelekiam\Documents\Visual Studio 2013\Projects\Solucion_Tienda\Tienda\Account\Manage.aspx" Message="Assembly Directives" />
+    <Event EventType="Success" Action="Analyze" SourceItem="C:\Users\maikelekiam\Documents\Visual Studio 2013\Projects\Solucion_Tienda\Tienda\Account\Manage.aspx" Message="Manage.aspx" />
+    <Event EventType="Success" Action="Analyze" SourceItem="C:\Users\maikelekiam\Documents\Visual Studio 2013\Projects\Solucion_Tienda\Tienda\Account\OpenAuthProviders.ascx" Message="Register Directives" />
+    <Event EventType="Success" Action="Analyze" SourceItem="C:\Users\maikelekiam\Documents\Visual Studio 2013\Projects\Solucion_Tienda\Tienda\Account\OpenAuthProviders.ascx" Message="Assembly Directives" />
+    <Event EventType="Success" Action="Analyze" SourceItem="C:\Users\maikelekiam\Documents\Visual Studio 2013\Projects\Solucion_Tienda\Tienda\Account\OpenAuthProviders.ascx" Message="OpenAuthProviders.ascx" />
+    <Event EventType="Success" Action="Analyze" SourceItem="C:\Users\maikelekiam\Documents\Visual Studio 2013\Projects\Solucion_Tienda\Tienda\Account\Register.aspx" Message="Register Directives" />
+    <Event EventType="Success" Action="Analyze" SourceItem="C:\Users\maikelekiam\Documents\Visual Studio 2013\Projects\Solucion_Tienda\Tienda\Account\Register.aspx" Message="Assembly Directives" />
+    <Event EventType="Success" Action="Analyze" SourceItem="C:\Users\maikelekiam\Documents\Visual Studio 2013\Projects\Solucion_Tienda\Tienda\Account\Register.aspx" Message="Register.aspx" />
+    <Event EventType="Success" Action="Analyze" SourceItem="C:\Users\maikelekiam\Documents\Visual Studio 2013\Projects\Solucion_Tienda\Tienda\Account\RegisterExternalLogin.aspx" Message="Register Directives" />
+    <Event EventType="Success" Action="Analyze" SourceItem="C:\Users\maikelekiam\Documents\Visual Studio 2013\Projects\Solucion_Tienda\Tienda\Account\RegisterExternalLogin.aspx" Message="Assembly Directives" />
+    <Event EventType="Success" Action="Analyze" SourceItem="C:\Users\maikelekiam\Documents\Visual Studio 2013\Projects\Solucion_Tienda\Tienda\Account\RegisterExternalLogin.aspx" Message="RegisterExternalLogin.aspx" />
+    <Event EventType="Success" Action="Analyze" SourceItem="C:\Users\maikelekiam\Documents\Visual Studio 2013\Projects\Solucion_Tienda\Tienda\Account\Web.config" Message="Assembly References" />
+    <Event EventType="Success" Action="Analyze" SourceItem="C:\Users\maikelekiam\Documents\Visual Studio 2013\Projects\Solucion_Tienda\Tienda\Account\Web.config" Message="Http Handlers" />
+    <Event EventType="Success" Action="Analyze" SourceItem="C:\Users\maikelekiam\Documents\Visual Studio 2013\Projects\Solucion_Tienda\Tienda\Account\Web.config" Message="Handlers (IIS7+)" />
+    <Event EventType="Success" Action="Analyze" SourceItem="C:\Users\maikelekiam\Documents\Visual Studio 2013\Projects\Solucion_Tienda\Tienda\Account\Web.config" Message="Config Sections" />
+    <Event EventType="Success" Action="Analyze" SourceItem="C:\Users\maikelekiam\Documents\Visual Studio 2013\Projects\Solucion_Tienda\Tienda\Account\Web.config" Message="Render Extensions" />
+    <Event EventType="Success" Action="Analyze" SourceItem="C:\Users\maikelekiam\Documents\Visual Studio 2013\Projects\Solucion_Tienda\Tienda\Account\Web.config" Message="Web.config" />
+    <Event EventType="Success" Action="Analyze" SourceItem="C:\Users\maikelekiam\Documents\Visual Studio 2013\Projects\Solucion_Tienda\Tienda\Bundle.config" Message="Assembly References" />
+    <Event EventType="Success" Action="Analyze" SourceItem="C:\Users\maikelekiam\Documents\Visual Studio 2013\Projects\Solucion_Tienda\Tienda\Bundle.config" Message="Http Handlers" />
+    <Event EventType="Success" Action="Analyze" SourceItem="C:\Users\maikelekiam\Documents\Visual Studio 2013\Projects\Solucion_Tienda\Tienda\Bundle.config" Message="Handlers (IIS7+)" />
+    <Event EventType="Success" Action="Analyze" SourceItem="C:\Users\maikelekiam\Documents\Visual Studio 2013\Projects\Solucion_Tienda\Tienda\Bundle.config" Message="Config Sections" />
+    <Event EventType="Success" Action="Analyze" SourceItem="C:\Users\maikelekiam\Documents\Visual Studio 2013\Projects\Solucion_Tienda\Tienda\Bundle.config" Message="Render Extensions" />
+    <Event EventType="Success" Action="Analyze" SourceItem="C:\Users\maikelekiam\Documents\Visual Studio 2013\Projects\Solucion_Tienda\Tienda\Bundle.config" Message="Bundle.config" />
+    <Event EventType="Success" Action="Analyze" SourceItem="C:\Users\maikelekiam\Documents\Visual Studio 2013\Projects\Solucion_Tienda\Tienda\Contact.aspx" Message="Register Directives" />
+    <Event EventType="Success" Action="Analyze" SourceItem="C:\Users\maikelekiam\Documents\Visual Studio 2013\Projects\Solucion_Tienda\Tienda\Contact.aspx" Message="Assembly Directives" />
+    <Event EventType="Success" Action="Analyze" SourceItem="C:\Users\maikelekiam\Documents\Visual Studio 2013\Projects\Solucion_Tienda\Tienda\Contact.aspx" Message="Contact.aspx" />
+    <Event EventType="Success" Action="Analyze" SourceItem="C:\Users\maikelekiam\Documents\Visual Studio 2013\Projects\Solucion_Tienda\Tienda\Default.aspx" Message="Register Directives" />
+    <Event EventType="Success" Action="Analyze" SourceItem="C:\Users\maikelekiam\Documents\Visual Studio 2013\Projects\Solucion_Tienda\Tienda\Default.aspx" Message="Assembly Directives" />
+    <Event EventType="Success" Action="Analyze" SourceItem="C:\Users\maikelekiam\Documents\Visual Studio 2013\Projects\Solucion_Tienda\Tienda\Default.aspx" Message="Default.aspx" />
+    <Event EventType="Success" Action="Analyze" SourceItem="C:\Users\maikelekiam\Documents\Visual Studio 2013\Projects\Solucion_Tienda\Tienda\packages.config" Message="Assembly References" />
+    <Event EventType="Success" Action="Analyze" SourceItem="C:\Users\maikelekiam\Documents\Visual Studio 2013\Projects\Solucion_Tienda\Tienda\packages.config" Message="Http Handlers" />
+    <Event EventType="Success" Action="Analyze" SourceItem="C:\Users\maikelekiam\Documents\Visual Studio 2013\Projects\Solucion_Tienda\Tienda\packages.config" Message="Handlers (IIS7+)" />
+    <Event EventType="Success" Action="Analyze" SourceItem="C:\Users\maikelekiam\Documents\Visual Studio 2013\Projects\Solucion_Tienda\Tienda\packages.config" Message="Config Sections" />
+    <Event EventType="Success" Action="Analyze" SourceItem="C:\Users\maikelekiam\Documents\Visual Studio 2013\Projects\Solucion_Tienda\Tienda\packages.config" Message="Render Extensions" />
+    <Event EventType="Success" Action="Analyze" SourceItem="C:\Users\maikelekiam\Documents\Visual Studio 2013\Projects\Solucion_Tienda\Tienda\packages.config" Message="packages.config" />
+    <Event EventType="Success" Action="Analyze" SourceItem="C:\Users\maikelekiam\Documents\Visual Studio 2013\Projects\Solucion_Tienda\Tienda\Site.Master" Message="Register Directives" />
+    <Event EventType="Success" Action="Analyze" SourceItem="C:\Users\maikelekiam\Documents\Visual Studio 2013\Projects\Solucion_Tienda\Tienda\Site.Master" Message="Assembly Directives" />
+    <Event EventType="Success" Action="Analyze" SourceItem="C:\Users\maikelekiam\Documents\Visual Studio 2013\Projects\Solucion_Tienda\Tienda\Site.Master" Message="Site.Master" />
+    <Event EventType="Success" Action="Analyze" SourceItem="C:\Users\maikelekiam\Documents\Visual Studio 2013\Projects\Solucion_Tienda\Tienda\Site.Mobile.Master" Message="Register Directives" />
+    <Event EventType="Success" Action="Analyze" SourceItem="C:\Users\maikelekiam\Documents\Visual Studio 2013\Projects\Solucion_Tienda\Tienda\Site.Mobile.Master" Message="Assembly Directives" />
+    <Event EventType="Success" Action="Analyze" SourceItem="C:\Users\maikelekiam\Documents\Visual Studio 2013\Projects\Solucion_Tienda\Tienda\Site.Mobile.Master" Message="Site.Mobile.Master" />
+    <Event EventType="Success" Action="Analyze" SourceItem="C:\Users\maikelekiam\Documents\Visual Studio 2013\Projects\Solucion_Tienda\Tienda\ViewSwitcher.ascx" Message="Register Directives" />
+    <Event EventType="Success" Action="Analyze" SourceItem="C:\Users\maikelekiam\Documents\Visual Studio 2013\Projects\Solucion_Tienda\Tienda\ViewSwitcher.ascx" Message="Assembly Directives" />
+    <Event EventType="Success" Action="Analyze" SourceItem="C:\Users\maikelekiam\Documents\Visual Studio 2013\Projects\Solucion_Tienda\Tienda\ViewSwitcher.ascx" Message="ViewSwitcher.ascx" />
+    <Event EventType="Success" Action="Analyze" SourceItem="C:\Users\maikelekiam\Documents\Visual Studio 2013\Projects\Solucion_Tienda\Tienda\Web.config" Message="Assembly References" />
+    <Event EventType="Success" Action="Analyze" SourceItem="C:\Users\maikelekiam\Documents\Visual Studio 2013\Projects\Solucion_Tienda\Tienda\Web.config" Message="Http Handlers" />
+    <Event EventType="Success" Action="Analyze" SourceItem="C:\Users\maikelekiam\Documents\Visual Studio 2013\Projects\Solucion_Tienda\Tienda\Web.config" Message="Handlers (IIS7+)" />
+    <Event EventType="Success" Action="Analyze" SourceItem="C:\Users\maikelekiam\Documents\Visual Studio 2013\Projects\Solucion_Tienda\Tienda\Web.config" Message="Config Sections" />
+    <Event EventType="Success" Action="Analyze" SourceItem="C:\Users\maikelekiam\Documents\Visual Studio 2013\Projects\Solucion_Tienda\Tienda\Web.config" Message="Render Extensions" />
+    <Event EventType="Success" Action="Analyze" SourceItem="C:\Users\maikelekiam\Documents\Visual Studio 2013\Projects\Solucion_Tienda\Tienda\Web.config" Message="Web.config" />
+    <Event EventType="Success" Action="Analyze" SourceItem="C:\Users\maikelekiam\Documents\Visual Studio 2013\Projects\Solucion_Tienda\Tienda\Web.Debug.config" Message="Assembly References" />
+    <Event EventType="Success" Action="Analyze" SourceItem="C:\Users\maikelekiam\Documents\Visual Studio 2013\Projects\Solucion_Tienda\Tienda\Web.Debug.config" Message="Http Handlers" />
+    <Event EventType="Success" Action="Analyze" SourceItem="C:\Users\maikelekiam\Documents\Visual Studio 2013\Projects\Solucion_Tienda\Tienda\Web.Debug.config" Message="Handlers (IIS7+)" />
+    <Event EventType="Success" Action="Analyze" SourceItem="C:\Users\maikelekiam\Documents\Visual Studio 2013\Projects\Solucion_Tienda\Tienda\Web.Debug.config" Message="Config Sections" />
+    <Event EventType="Success" Action="Analyze" SourceItem="C:\Users\maikelekiam\Documents\Visual Studio 2013\Projects\Solucion_Tienda\Tienda\Web.Debug.config" Message="Render Extensions" />
+    <Event EventType="Success" Action="Analyze" SourceItem="C:\Users\maikelekiam\Documents\Visual Studio 2013\Projects\Solucion_Tienda\Tienda\Web.Debug.config" Message="Web.Debug.config" />
+    <Event EventType="Success" Action="Analyze" SourceItem="C:\Users\maikelekiam\Documents\Visual Studio 2013\Projects\Solucion_Tienda\Tienda\Web.Release.config" Message="Assembly References" />
+    <Event EventType="Success" Action="Analyze" SourceItem="C:\Users\maikelekiam\Documents\Visual Studio 2013\Projects\Solucion_Tienda\Tienda\Web.Release.config" Message="Http Handlers" />
+    <Event EventType="Success" Action="Analyze" SourceItem="C:\Users\maikelekiam\Documents\Visual Studio 2013\Projects\Solucion_Tienda\Tienda\Web.Release.config" Message="Handlers (IIS7+)" />
+    <Event EventType="Success" Action="Analyze" SourceItem="C:\Users\maikelekiam\Documents\Visual Studio 2013\Projects\Solucion_Tienda\Tienda\Web.Release.config" Message="Config Sections" />
+    <Event EventType="Success" Action="Analyze" SourceItem="C:\Users\maikelekiam\Documents\Visual Studio 2013\Projects\Solucion_Tienda\Tienda\Web.Release.config" Message="Render Extensions" />
+    <Event EventType="Success" Action="Analyze" SourceItem="C:\Users\maikelekiam\Documents\Visual Studio 2013\Projects\Solucion_Tienda\Tienda\Web.Release.config" Message="Web.Release.config" />
+    <Event EventType="Success" Action="Analyze" SourceItem="C:\Users\maikelekiam\Documents\Visual Studio 2013\Projects\Solucion_Tienda\Tienda\Tienda.csproj" Message="Tienda" />
+    <Event EventType="Success" Action="Analyze" SourceItem="C:\Users\maikelekiam\Documents\Visual Studio 2013\Projects\Solucion_Tienda\CapaDominio\CapaDominio.csproj" Message="Assembly References" />
+    <Event EventType="Success" Action="Analyze" SourceItem="C:\Users\maikelekiam\Documents\Visual Studio 2013\Projects\Solucion_Tienda\CapaDominio\CapaDominio.csproj" Message="Project References" />
+    <Event EventType="Success" Action="Analyze" SourceItem="C:\Users\maikelekiam\Documents\Visual Studio 2013\Projects\Solucion_Tienda\CapaDominio\CapaDominio.csproj" Message="Import Directives" />
+    <Event EventType="Success" Action="Analyze" SourceItem="C:\Users\maikelekiam\Documents\Visual Studio 2013\Projects\Solucion_Tienda\CapaDominio\App.Config" Message="Assembly References" />
+    <Event EventType="Success" Action="Analyze" SourceItem="C:\Users\maikelekiam\Documents\Visual Studio 2013\Projects\Solucion_Tienda\CapaDominio\App.Config" Message="Http Handlers" />
+    <Event EventType="Success" Action="Analyze" SourceItem="C:\Users\maikelekiam\Documents\Visual Studio 2013\Projects\Solucion_Tienda\CapaDominio\App.Config" Message="Handlers (IIS7+)" />
+    <Event EventType="Success" Action="Analyze" SourceItem="C:\Users\maikelekiam\Documents\Visual Studio 2013\Projects\Solucion_Tienda\CapaDominio\App.Config" Message="Config Sections" />
+    <Event EventType="Success" Action="Analyze" SourceItem="C:\Users\maikelekiam\Documents\Visual Studio 2013\Projects\Solucion_Tienda\CapaDominio\App.Config" Message="Render Extensions" />
+    <Event EventType="Success" Action="Analyze" SourceItem="C:\Users\maikelekiam\Documents\Visual Studio 2013\Projects\Solucion_Tienda\CapaDominio\App.Config" Message="App.Config" />
+    <Event EventType="Success" Action="Analyze" SourceItem="C:\Users\maikelekiam\Documents\Visual Studio 2013\Projects\Solucion_Tienda\CapaDominio\CapaDominio.csproj" Message="CapaDominio" />
+    <Event EventType="Success" Action="Analyze" SourceItem="C:\Users\maikelekiam\Documents\Visual Studio 2013\Projects\Solucion_Tienda\CapaRepositorio\CapaRepositorio.csproj" Message="Assembly References" />
+    <Event EventType="Success" Action="Analyze" SourceItem="C:\Users\maikelekiam\Documents\Visual Studio 2013\Projects\Solucion_Tienda\CapaRepositorio\CapaRepositorio.csproj" Message="Project References" />
+    <Event EventType="Success" Action="Analyze" SourceItem="C:\Users\maikelekiam\Documents\Visual Studio 2013\Projects\Solucion_Tienda\CapaRepositorio\CapaRepositorio.csproj" Message="Import Directives" />
+    <Event EventType="Success" Action="Analyze" SourceItem="C:\Users\maikelekiam\Documents\Visual Studio 2013\Projects\Solucion_Tienda\CapaRepositorio\CapaRepositorio.csproj" Message="CapaRepositorio" />
+    <Event EventType="Success" Action="Analyze" SourceItem="C:\Users\maikelekiam\Documents\Visual Studio 2013\Projects\Solucion_Tienda\CapaNegocio\CapaNegocio.csproj" Message="Assembly References" />
+    <Event EventType="Success" Action="Analyze" SourceItem="C:\Users\maikelekiam\Documents\Visual Studio 2013\Projects\Solucion_Tienda\CapaNegocio\CapaNegocio.csproj" Message="Project References" />
+    <Event EventType="Success" Action="Analyze" SourceItem="C:\Users\maikelekiam\Documents\Visual Studio 2013\Projects\Solucion_Tienda\CapaNegocio\CapaNegocio.csproj" Message="Import Directives" />
+    <Event EventType="Success" Action="Analyze" SourceItem="C:\Users\maikelekiam\Documents\Visual Studio 2013\Projects\Solucion_Tienda\CapaNegocio\CapaNegocio.csproj" Message="CapaNegocio" />
+    <Event EventType="Success" Action="Analyze" SourceItem="C:\Users\maikelekiam\Documents\Visual Studio 2013\Projects\Solucion_Tienda\Solucion_Tienda.sln" Message="Solucion_Tienda" />
+  </Events>
+</UpgradeLog>
