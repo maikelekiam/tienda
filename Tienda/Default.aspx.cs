@@ -19,27 +19,35 @@ namespace Tienda
         static Pedido carritoActual = new Pedido();
 
         static IList<DetallePedidoTemporal> listaTemporal = new List<DetallePedidoTemporal>();
+        static IList<DetallePedidoTemporal> listaTemporalMargen = new List<DetallePedidoTemporal>();
+        public List<int> listaPorcentajes = new List<int> { 0, 10, 20, 30, 40, 50 };
 
         static int idProductoActual;
         static decimal? precioActual;
+        static int idUsuarioActual;
 
         static decimal? sumaTotalCarrito = 0;
         static int CantidadProductosCarrito = 0;
+
+        int margen = 0;
 
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
             {
+                idUsuarioActual = Convert.ToInt32(Session["userid"]);
+
                 CalcularSumaTotalCarrito();
 
                 LlenarListaProductos();
+                LlenarListaPoecentajes();
 
                 MostrarCarrito();
             }
         }
         public void CalcularSumaTotalCarrito()
         {
-            listaTemporal = detallePedidoTemporalNego.MostrarDetallePedidosTemporal().ToList();
+            listaTemporal = detallePedidoTemporalNego.MostrarDetallePedidosTemporal().Where(c => c.IdUsuario == (Convert.ToInt32(Session["userid"]))).ToList();
 
             sumaTotalCarrito = 0;
             CantidadProductosCarrito = 0;
@@ -63,14 +71,15 @@ namespace Tienda
 
         public void LimpiarCarritoTemporal()
         {
-            detallePedidoTemporalNego.BorrarListaDetallePedidoTemporal();
-            listaTemporal = detallePedidoTemporalNego.MostrarDetallePedidosTemporal().ToList();
+            detallePedidoTemporalNego.BorrarListaDetallePedidoTemporal(Convert.ToInt32(Session["userid"]));
+            listaTemporal = detallePedidoTemporalNego.MostrarDetallePedidosTemporal().Where(c => c.IdUsuario == (Convert.ToInt32(Session["userid"]))).ToList();
             MostrarCarrito();
         }
         public void MostrarCarrito()
         {
-            dgvCarrito.DataSource = listaTemporal;
+            dgvCarrito.DataSource = detallePedidoTemporalNego.MostrarDetallePedidosTemporal().Where(c => c.IdUsuario == (Convert.ToInt32(Session["userid"]))).ToList(); ;
             dgvCarrito.DataBind();
+
             CalcularSumaTotalCarrito();
         }
 
@@ -83,9 +92,10 @@ namespace Tienda
             DetallePedidoTemporal dpt = detallePedidoTemporalNego.ObtenerDetallePedidoTemporal(index2);
 
             detallePedidoTemporalNego.BorrarDetallePedidoTemporal(dpt);
-            txtTotalCarrito.Text = "$ "+Convert.ToString(sumaTotalCarrito);
+            txtTotalCarrito.Text = "$ " + Convert.ToString(sumaTotalCarrito);
 
-            listaTemporal = detallePedidoTemporalNego.MostrarDetallePedidosTemporal().ToList();
+            listaTemporal = detallePedidoTemporalNego.MostrarDetallePedidosTemporal().Where(c => c.IdUsuario == (Convert.ToInt32(Session["userid"]))).ToList();
+
             MostrarCarrito();
         }
 
@@ -102,10 +112,11 @@ namespace Tienda
                 detallePedidoTemporal.Cantidad = Convert.ToInt32(txtCantidad.Text);
                 detallePedidoTemporal.IdProducto = producto.IdProducto;
                 detallePedidoTemporal.Precio = producto.Precio;
+                detallePedidoTemporal.IdUsuario = Convert.ToInt32(Session["userid"]);
 
                 detallePedidoTemporalNego.GuardarDetallePedidoTemporal(detallePedidoTemporal);
 
-                listaTemporal = detallePedidoTemporalNego.MostrarDetallePedidosTemporal().ToList();
+                listaTemporal = detallePedidoTemporalNego.MostrarDetallePedidosTemporal().Where(c => c.IdUsuario == (Convert.ToInt32(Session["userid"]))).ToList();
 
                 MostrarCarrito();
 
@@ -115,7 +126,7 @@ namespace Tienda
             }
             else
             {
-                DetallePedidoTemporal filtroDpt = detallePedidoTemporalNego.FiltrarDetallePedidoTemporalSegunProducto(idProductoActual);
+                DetallePedidoTemporal filtroDpt = detallePedidoTemporalNego.FiltrarDetallePedidoTemporalSegunProducto(idProductoActual, (Convert.ToInt32(Session["userid"])));
 
                 if (filtroDpt == null)
                 {
@@ -124,6 +135,7 @@ namespace Tienda
                     detallePedidoTemporal.Cantidad = Convert.ToInt32(txtCantidad.Text);
                     detallePedidoTemporal.IdProducto = producto.IdProducto;
                     detallePedidoTemporal.Precio = producto.Precio;
+                    detallePedidoTemporal.IdUsuario = Convert.ToInt32(Session["userid"]);
 
                     detallePedidoTemporalNego.GuardarDetallePedidoTemporal(detallePedidoTemporal);
                 }
@@ -135,11 +147,12 @@ namespace Tienda
                     detallePedidoTemporal.IdProducto = filtroDpt.IdProducto;
                     detallePedidoTemporal.Cantidad = filtroDpt.Cantidad + Convert.ToInt32(txtCantidad.Text);
                     detallePedidoTemporal.Precio = filtroDpt.Precio;
+                    detallePedidoTemporal.IdUsuario = Convert.ToInt32(Session["userid"]);
 
                     detallePedidoTemporalNego.ActualizarDetallePedidoTemporal(detallePedidoTemporal);
                 }
 
-                listaTemporal = detallePedidoTemporalNego.MostrarDetallePedidosTemporal().ToList();
+                listaTemporal = detallePedidoTemporalNego.MostrarDetallePedidosTemporal().Where(c => c.IdUsuario == (Convert.ToInt32(Session["userid"]))).ToList();
 
                 MostrarCarrito();
 
@@ -147,6 +160,33 @@ namespace Tienda
 
                 txtCantidad.Text = "1";
             }
+        }
+
+        protected void btnMasUno_Click(object sender, EventArgs e)
+        {
+            txtCantidad.Text = Convert.ToString(Convert.ToInt32(txtCantidad.Text) + 1);
+        }
+
+        protected void btnMenosUno_Click(object sender, EventArgs e)
+        {
+            if (Convert.ToInt32(txtCantidad.Text) > 1)
+            {
+                txtCantidad.Text = Convert.ToString(Convert.ToInt32(txtCantidad.Text) - 1);
+            }
+        }
+        private void LlenarListaPoecentajes()
+        {
+            ddlMargen.DataSource = listaPorcentajes;
+            ddlMargen.DataBind();
+        }
+
+        protected void btnMargenAplicar_Click(object sender, EventArgs e)
+        {
+            margen = Convert.ToInt32(ddlMargen.SelectedValue);
+
+
+
+
         }
     }
 }

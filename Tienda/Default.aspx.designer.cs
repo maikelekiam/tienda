@@ -13,6 +13,33 @@ namespace Tienda {
     public partial class _Default {
         
         /// <summary>
+        /// lblMargen control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblMargen;
+        
+        /// <summary>
+        /// ddlMargen control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlMargen;
+        
+        /// <summary>
+        /// btnMargenAplicar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnMargenAplicar;
+        
+        /// <summary>
         /// lblProducto control.
         /// </summary>
         /// <remarks>
@@ -47,6 +74,24 @@ namespace Tienda {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtCantidad;
+        
+        /// <summary>
+        /// btnMasUno control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnMasUno;
+        
+        /// <summary>
+        /// btnMenosUno control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnMenosUno;
         
         /// <summary>
         /// btnAgregarAlPedido control.
