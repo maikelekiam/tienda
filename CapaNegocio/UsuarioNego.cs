@@ -16,5 +16,13 @@ namespace CapaNegocio
         {
             return usuarioRepo.ObtenerUsuario(nombre, contrasenia);
         }
+        public void ActualizarUsuario(Usuario usuario)
+        {
+            usuarioRepo.ActualizarUsuario(usuario);
+        }
+        public void ActualizarMargenUsuario(int margen, int id)
+        {
+            usuarioRepo.ActualizarMargenUsuario(margen, id);
+        }
     }
 }

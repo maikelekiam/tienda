@@ -1,12 +1,9 @@
 ﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="Tienda._Default" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+
     <!-- MARGEN -->
     <br />
-    <div class="form-group">
-    </div>
-    <!-- SELECCIONAR CODIGO DEL PRODUCTO -->
-
     <div class="form-group ">
         <asp:Label ID="lblMargen" runat="server" Text="Margen" CssClass="col-md-2 col-md-offset-1 control-label"></asp:Label>
         <div class="col-md-2">
@@ -16,16 +13,14 @@
                 Font-Bold="false"
                 Width="100"
                 CssClass="selectpicker form-control show-tick"
-                data-live-search="true"
-                AutoPostBack="false">
+                AutoPostBack="true"
+                OnSelectedIndexChanged="ddlMargen_SelectedIndexChanged">
             </asp:DropDownList>
-        </div>
-        <div class="col-md-2">
-            <asp:Button ID="btnMargenAplicar" runat="server" Text="APLICAR" CssClass="btn btn-success" OnClick="btnMargenAplicar_Click" />
         </div>
     </div>
 
 
+    <!-- SELECCIONAR CODIGO DEL PRODUCTO -->
     <div class="form-group">
         <asp:Label ID="lblProducto" runat="server" Text="SELECCIONAR CODIGO DEL PRODUCTO" CssClass="col-md-3 control-label"> </asp:Label>
         <div class="col-md-4">

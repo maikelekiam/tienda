@@ -76,6 +76,41 @@ namespace CapaDominio
 			}
 		}
 		
+		private int? margen;
+		public virtual int? Margen
+		{
+			get
+			{
+				return this.margen;
+			}
+			set
+			{
+				this.margen = value;
+			}
+		}
+		
+		private string mail;
+		public virtual string Mail
+		{
+			get
+			{
+				return this.mail;
+			}
+			set
+			{
+				this.mail = value;
+			}
+		}
+		
+		private IList<PresupuestoTemporal> presupuestoTemporals = new List<PresupuestoTemporal>();
+		public virtual IList<PresupuestoTemporal> PresupuestoTemporals
+		{
+			get
+			{
+				return this.presupuestoTemporals;
+			}
+		}
+		
 		private IList<Pedido> pedidos = new List<Pedido>();
 		public virtual IList<Pedido> Pedidos
 		{

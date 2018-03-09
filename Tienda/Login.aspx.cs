@@ -33,7 +33,8 @@ namespace Tienda
 
                 Session["userid"] = Convert.ToString(usuario.IdUsuario);
 
-                
+                Session["margenid"] = Convert.ToString(usuario.Margen);
+
                 //grupo = usuario.Grupo;
                 //nombreUsuario = usuario.Nombre;
                 //idUsuario = usuario.IdUsuario;

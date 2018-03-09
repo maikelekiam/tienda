@@ -46,6 +46,7 @@
     <Compile Include="DetallePedidoRepo.cs" />
     <Compile Include="DetallePedidoTemporalRepo.cs" />
     <Compile Include="PedidoRepo.cs" />
+    <Compile Include="PresupuestoRepo.cs" />
     <Compile Include="ProductoRepo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UsuarioRepo.cs" />

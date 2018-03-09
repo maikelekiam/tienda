@@ -66,6 +66,14 @@ namespace CapaDominio
 			}
 		}
 		
+		public IQueryable<PresupuestoTemporal> PresupuestoTemporals 
+		{
+			get
+			{
+				return this.GetAll<PresupuestoTemporal>();
+			}
+		}
+		
 		public IQueryable<Pedido> Pedidos 
 		{
 			get
@@ -74,19 +82,19 @@ namespace CapaDominio
 			}
 		}
 		
-		public IQueryable<DetallePedido> DetallePedidos 
-		{
-			get
-			{
-				return this.GetAll<DetallePedido>();
-			}
-		}
-		
 		public IQueryable<DetallePedidoTemporal> DetallePedidoTemporals 
 		{
 			get
 			{
 				return this.GetAll<DetallePedidoTemporal>();
+			}
+		}
+		
+		public IQueryable<DetallePedido> DetallePedidos 
+		{
+			get
+			{
+				return this.GetAll<DetallePedido>();
 			}
 		}
 		
@@ -119,15 +127,19 @@ namespace CapaDominio
 		{
 			get;
 		}
+		IQueryable<PresupuestoTemporal> PresupuestoTemporals
+		{
+			get;
+		}
 		IQueryable<Pedido> Pedidos
 		{
 			get;
 		}
-		IQueryable<DetallePedido> DetallePedidos
+		IQueryable<DetallePedidoTemporal> DetallePedidoTemporals
 		{
 			get;
 		}
-		IQueryable<DetallePedidoTemporal> DetallePedidoTemporals
+		IQueryable<DetallePedido> DetallePedidos
 		{
 			get;
 		}

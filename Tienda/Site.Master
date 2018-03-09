@@ -103,11 +103,11 @@
                         <div class="collapse navbar-collapse navbar-ex1-collapse">
                             <ul class="nav navbar-nav navbar-static-top">
                                 <li><a class="home_link" title="Inicio" href="Default.aspx"><span>Inicio</span></a></li>
-                                <li class="contact-link"><a href="Default.aspx">Realizar Presupuesto</a></li>
+                                <li class="contact-link"><a href="Default.aspx">Armar Pedido</a></li>
                                 <li class="dropdown information-link"><a>Paginas</a>
                                     <div class="dropdown-menu">
                                         <ul>
-                                            <li><a href="Default.aspx">Realizar Presupuesto</a></li>
+                                            <li><a href="Default.aspx">Armar Pedido</a></li>
                                             <li><a href="Contact.aspx">Contacto</a></li>
                                             <li><a href="About.aspx">Nosotros</a></li>
                                             <li><a href="RealizarPedido.aspx">Carrito (Pedido Actual)</a></li>
