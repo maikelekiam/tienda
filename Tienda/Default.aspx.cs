@@ -89,11 +89,14 @@ namespace Tienda
 
         protected void dgvCarrito_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
-            listaTemporal = detallePedidoTemporalNego.MostrarDetallePedidosTemporal().Where(c => c.IdUsuario == (Convert.ToInt32(Session["userid"]))).ToList();
+            //listaTemporal = detallePedidoTemporalNego.MostrarDetallePedidosTemporal().Where(c => c.IdUsuario == (Convert.ToInt32(Session["userid"]))).ToList();
+            listaMargen = presupuestoNego.MostrarPresupuestosTemporal().Where(c => c.IdUsuario == (Convert.ToInt32(Session["userid"]))).ToList();
+
 
             int index1 = Convert.ToInt32(e.RowIndex);
 
-            int index2 = listaTemporal.ElementAt(index1).IdDetallePedidoTemporal;
+            //int index2 = listaTemporal.ElementAt(index1).IdDetallePedidoTemporal;
+            int index2 = listaMargen.ElementAt(index1).IdPresupuestoTemporal;
 
             DetallePedidoTemporal dpt = detallePedidoTemporalNego.ObtenerDetallePedidoTemporal(index2);
             //agrego para la listamargen

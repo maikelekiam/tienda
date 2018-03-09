@@ -86,7 +86,7 @@ namespace Tienda
                 {
                     GuardarPedido();
                     LimpiarPedido();
-                    detallePedidoTemporalNego.BorrarListaDetallePedidoTemporal(idUsuarioActual);
+                    //detallePedidoTemporalNego.BorrarListaDetallePedidoTemporal(idUsuarioActual);
                     Response.Redirect("Default.aspx");
                 }
             }
