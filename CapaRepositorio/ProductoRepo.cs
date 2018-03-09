@@ -26,7 +26,16 @@ namespace CapaRepositorio
 
                 return result;
             }
-        } 
+        }
+        public Producto ObtenerProductoSegunIdProducto(int id)
+        {
+            using (ModeloDeDominio modeloDeDominio = new ModeloDeDominio())
+            {
+                Producto result = modeloDeDominio.Productos.Where(c => c.IdProducto == id).FirstOrDefault();
+
+                return result;
+            }
+        }
 
     }
 }

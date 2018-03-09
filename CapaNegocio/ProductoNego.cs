@@ -21,6 +21,9 @@ namespace CapaNegocio
         {
             return productoRepo.ObtenerProducto(cod);
         }
-
+        public Producto ObtenerProductoSegunIdProducto(int id)
+        {
+            return productoRepo.ObtenerProductoSegunIdProducto(id);
+        }
     }
 }

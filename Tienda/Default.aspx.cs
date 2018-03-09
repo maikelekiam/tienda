@@ -85,8 +85,6 @@ namespace Tienda
         }
         public void MostrarCarrito()
         {
-            //dgvCarrito.DataSource = detallePedidoTemporalNego.MostrarDetallePedidosTemporal().Where(c => c.IdUsuario == (Convert.ToInt32(Session["userid"]))).ToList(); ;
-
             listaMargen = presupuestoNego.MostrarPresupuestosTemporal().Where(c => c.IdUsuario == (Convert.ToInt32(Session["userid"]))).ToList();
 
             dgvCarrito.DataSource = listaMargen;
@@ -102,12 +100,17 @@ namespace Tienda
             int index2 = listaTemporal.ElementAt(index1).IdDetallePedidoTemporal;
 
             DetallePedidoTemporal dpt = detallePedidoTemporalNego.ObtenerDetallePedidoTemporal(index2);
+            //agrego para la listamargen
+            PresupuestoTemporal presu = presupuestoNego.ObtenerPresupuestoTemporal(index2);
+            presupuestoNego.BorrarPresupuestoTemporal(presu);
+            //fin agrego para listamargen
 
             detallePedidoTemporalNego.BorrarDetallePedidoTemporal(dpt);
-            txtTotalCarrito.Text = "$ " + Convert.ToString(sumaTotalCarrito);
 
-            listaTemporal = detallePedidoTemporalNego.MostrarDetallePedidosTemporal().Where(c => c.IdUsuario == (Convert.ToInt32(Session["userid"]))).ToList();
+            //txtTotalCarrito.Text = "$ " + Convert.ToString(sumaTotalCarrito);
 
+            //listaTemporal = detallePedidoTemporalNego.MostrarDetallePedidosTemporal().Where(c => c.IdUsuario == (Convert.ToInt32(Session["userid"]))).ToList();
+            
             MostrarCarrito();
         }
 
@@ -129,12 +132,6 @@ namespace Tienda
                 detallePedidoTemporalNego.GuardarDetallePedidoTemporal(detallePedidoTemporal);
 
                 listaTemporal = detallePedidoTemporalNego.MostrarDetallePedidosTemporal().Where(c => c.IdUsuario == (Convert.ToInt32(Session["userid"]))).ToList();
-
-                MostrarCarrito();
-
-                CalcularSumaTotalCarrito();
-
-                txtCantidad.Text = "1";
             }
             else
             {
@@ -165,35 +162,23 @@ namespace Tienda
                 }
 
                 listaTemporal = detallePedidoTemporalNego.MostrarDetallePedidosTemporal().Where(c => c.IdUsuario == (Convert.ToInt32(Session["userid"]))).ToList();
-
-                MostrarCarrito();
-
-                CalcularSumaTotalCarrito();
-
-                txtCantidad.Text = "1";
             }
 
 
             //rutina para la listamargen
+            precioActual = producto.Precio * (1 + (Convert.ToDecimal(Session["margenid"])) / 100);
             if (listaMargen.Count == 0)
             {
                 PresupuestoTemporal presupuestoTemporal = new PresupuestoTemporal();
 
                 presupuestoTemporal.Cantidad = Convert.ToInt32(txtCantidad.Text);
                 presupuestoTemporal.IdProducto = producto.IdProducto;
-                presupuestoTemporal.Precio = producto.Precio * (1 + (Convert.ToDecimal(Session["margenid"])) / 100);
-                //presupuestoTemporal.Precio = producto.Precio;
+                presupuestoTemporal.Precio = precioActual;
                 presupuestoTemporal.IdUsuario = Convert.ToInt32(Session["userid"]);
 
                 presupuestoNego.GuardarPresupuestoTemporal(presupuestoTemporal);
 
                 listaMargen = presupuestoNego.MostrarPresupuestosTemporal().Where(c => c.IdUsuario == (Convert.ToInt32(Session["userid"]))).ToList();
-
-                MostrarCarrito();
-
-                CalcularSumaTotalCarrito();
-
-                txtCantidad.Text = "1";
             }
             else
             {
@@ -205,9 +190,7 @@ namespace Tienda
 
                     presupuestoTemporal.Cantidad = Convert.ToInt32(txtCantidad.Text);
                     presupuestoTemporal.IdProducto = producto.IdProducto;
-                    presupuestoTemporal.Precio = producto.Precio * (1 + 10 / 100);
-                    //presupuestoTemporal.Precio = producto.Precio * (1 + (Convert.ToDecimal(Session["margenid"])) / 100);
-                    //presupuestoTemporal.Precio = producto.Precio;
+                    presupuestoTemporal.Precio = precioActual;
                     presupuestoTemporal.IdUsuario = Convert.ToInt32(Session["userid"]);
 
                     presupuestoNego.GuardarPresupuestoTemporal(presupuestoTemporal);
@@ -219,22 +202,20 @@ namespace Tienda
                     presupuestoTemporal.IdPresupuestoTemporal = filtroDpt.IdPresupuestoTemporal;
                     presupuestoTemporal.IdProducto = filtroDpt.IdProducto;
                     presupuestoTemporal.Cantidad = filtroDpt.Cantidad + Convert.ToInt32(txtCantidad.Text);
-                    presupuestoTemporal.Precio = filtroDpt.Precio * (1 + 10 / 100);
-                    //presupuestoTemporal.Precio = filtroDpt.Precio * (1 + (Convert.ToDecimal(Session["margenid"])) / 100);
-                    //presupuestoTemporal.Precio = filtroDpt.Precio;
+                    presupuestoTemporal.Precio = precioActual;
                     presupuestoTemporal.IdUsuario = Convert.ToInt32(Session["userid"]);
 
                     presupuestoNego.ActualizarPresupuestoTemporal(presupuestoTemporal);
                 }
 
                 listaMargen = presupuestoNego.MostrarPresupuestosTemporal().Where(c => c.IdUsuario == (Convert.ToInt32(Session["userid"]))).ToList();
-
-                MostrarCarrito();
-
-                CalcularSumaTotalCarrito();
-
-                txtCantidad.Text = "1";
             }
+
+            MostrarCarrito();
+
+            CalcularSumaTotalCarrito();
+
+            txtCantidad.Text = "1";
         }
 
         protected void btnMasUno_Click(object sender, EventArgs e)
@@ -263,7 +244,7 @@ namespace Tienda
 
             ActualizarMargenUsuario();
 
-            //lblMargen.Text = Convert.ToString(ddlMargen.SelectedValue);
+            CalcularCarritoMargen();
         }
         public void ActualizarMargenUsuario()
         {
@@ -271,29 +252,27 @@ namespace Tienda
 
             usuarioNego.ActualizarMargenUsuario(margen, Convert.ToInt32(Session["userid"]));
         }
+
         public void CalcularCarritoMargen()
         {
-            listaTemporal = detallePedidoTemporalNego.MostrarDetallePedidosTemporal().Where(c => c.IdUsuario == (Convert.ToInt32(Session["userid"]))).ToList();
-            listaMargen.Clear();
+            listaMargen = presupuestoNego.MostrarPresupuestosTemporal().Where(c => c.IdUsuario == (Convert.ToInt32(Session["userid"]))).ToList();
 
-            foreach (DetallePedidoTemporal dpt in listaTemporal)
+            foreach (PresupuestoTemporal presu in listaMargen)
             {
-                PresupuestoTemporal presu = new PresupuestoTemporal();
+                Producto produ = productoNego.ObtenerProductoSegunIdProducto(Convert.ToInt32(presu.IdProducto));
 
-                //presu.IdPresupuestoTemporal = dpt.IdDetallePedidoTemporal;
-                presu.IdProducto = dpt.IdProducto;
-                presu.Cantidad = dpt.Cantidad;
-                presu.Precio = dpt.Precio * (1 + (Convert.ToDecimal(Session["margenid"])) / 100);
-                presu.IdUsuario = dpt.IdUsuario;
+                PresupuestoTemporal presupuestoTemporal = new PresupuestoTemporal();
 
-                presupuestoNego.GuardarPresupuestoTemporal(presu);
+                presupuestoTemporal.IdPresupuestoTemporal = presu.IdPresupuestoTemporal;
+                presupuestoTemporal.IdProducto = produ.IdProducto;
+                presupuestoTemporal.Cantidad = presu.Cantidad;
+                presupuestoTemporal.Precio = produ.Precio * (1 + (Convert.ToDecimal(Session["margenid"])) / 100);
+                presupuestoTemporal.IdUsuario = Convert.ToInt32(Session["userid"]);
+
+                presupuestoNego.ActualizarPresupuestoTemporal(presupuestoTemporal);
             }
-            listaMargen = presupuestoNego.MostrarPresupuestosTemporal().ToList();
 
-            //guardo listamargen en la base de datos
-            dgvCarrito.DataSource = presupuestoNego.MostrarPresupuestosTemporal().ToList();
-            dgvCarrito.DataBind();
+            MostrarCarrito();
         }
-
     }
 }

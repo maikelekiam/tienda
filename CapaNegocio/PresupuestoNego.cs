@@ -29,5 +29,13 @@ namespace CapaNegocio
         {
             presupuestoRepo.ActualizarPresupuestoTemporal(presupuestoTemporal);
         }
+        public PresupuestoTemporal ObtenerPresupuestoTemporal(int id)
+        {
+            return presupuestoRepo.ObtenerPresupuestoTemporal(id);
+        }
+        public void BorrarPresupuestoTemporal(PresupuestoTemporal presupuestoTemporal)
+        {
+            presupuestoRepo.BorrarPresupuestoTemporal(presupuestoTemporal);
+        }
     }
 }

@@ -41,5 +41,26 @@ namespace CapaRepositorio
                 modeloDeDominio.SaveChanges();
             }
         }
+        public PresupuestoTemporal ObtenerPresupuestoTemporal(int id)
+        {
+            using (ModeloDeDominio modeloDeDominio = new ModeloDeDominio())
+            {
+                PresupuestoTemporal result = modeloDeDominio.PresupuestoTemporals.Where(c => c.IdPresupuestoTemporal == id).FirstOrDefault();
+                return result;
+            }
+        }
+        public void BorrarPresupuestoTemporal(PresupuestoTemporal presupuestoTemporal)
+        {
+            using (ModeloDeDominio modeloDeDominio = new ModeloDeDominio())
+            {
+                IQueryable<PresupuestoTemporal> query = modeloDeDominio.GetAll<PresupuestoTemporal>().Where(c => c.IdPresupuestoTemporal == presupuestoTemporal.IdPresupuestoTemporal);
+
+                foreach (PresupuestoTemporal presu in query)
+                {
+                    modeloDeDominio.Delete(presu);
+                    modeloDeDominio.SaveChanges();
+                }
+            }
+        }
     }
 }
