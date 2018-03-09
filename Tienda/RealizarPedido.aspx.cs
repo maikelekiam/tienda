@@ -25,6 +25,7 @@ namespace Tienda
 
         public static int idPedidoSeleccionado;
 
+        static int idUsuarioActual;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -33,17 +34,21 @@ namespace Tienda
                 int anioHoy = DateTime.Now.Year;
                 for (int i = 0; i < 100; i++) { listaAnio.Add(anioHoy - i); }
 
+                idUsuarioActual = Convert.ToInt32(Session["userid"]);
+
                 LlenarFechas();
 
                 MostrarCarrito();
 
                 CalcularSumaTotalCarrito();
 
-                txtNombreUsuario.Text = Login.nombreUsuario;
+                txtNombreUsuario.Text = Session["userlogin"].ToString();
 
                 MostrarPedidosRealizados();
             }
         }
+        
+        
         private void LlenarFechas()
         {
             ddlDia.DataSource = listaDia;
@@ -61,7 +66,7 @@ namespace Tienda
 
         public void MostrarCarrito()
         {
-            dgvCarrito.DataSource = detallePedidoTemporalNego.MostrarDetallePedidosTemporal().ToList();
+            dgvCarrito.DataSource = detallePedidoTemporalNego.MostrarDetallePedidosTemporal().Where(c => c.IdUsuario == idUsuarioActual).ToList();
             dgvCarrito.DataBind();
 
             CalcularSumaTotalCarrito();
@@ -71,7 +76,7 @@ namespace Tienda
         {
             if (txtNumeroPedido.Text != "")
             {
-                listaTemporal = detallePedidoTemporalNego.MostrarDetallePedidosTemporal().ToList();
+                listaTemporal = detallePedidoTemporalNego.MostrarDetallePedidosTemporal().Where(c => c.IdUsuario == idUsuarioActual).ToList();
 
                 if (listaTemporal.Count == 0)
                 {
@@ -81,7 +86,7 @@ namespace Tienda
                 {
                     GuardarPedido();
                     LimpiarPedido();
-                    detallePedidoTemporalNego.BorrarListaDetallePedidoTemporal();
+                    detallePedidoTemporalNego.BorrarListaDetallePedidoTemporal(idUsuarioActual);
                     Response.Redirect("Default.aspx");
                 }
             }
@@ -95,9 +100,9 @@ namespace Tienda
         {
             Pedido pedido = new Pedido();
 
-            listaTemporal = detallePedidoTemporalNego.MostrarDetallePedidosTemporal().ToList();
+            listaTemporal = detallePedidoTemporalNego.MostrarDetallePedidosTemporal().Where(c => c.IdUsuario == idUsuarioActual).ToList();
 
-            pedido.IdUsuario = Login.idUsuario;
+            pedido.IdUsuario = idUsuarioActual;
             pedido.NumeroPedido = txtNumeroPedido.Text;
             pedido.PedidoDia = Convert.ToInt32(ddlDia.Text);
             pedido.PedidoMes = ddlMes.Text;
@@ -128,7 +133,7 @@ namespace Tienda
         }
         public void CalcularSumaTotalCarrito()
         {
-            listaTemporal = detallePedidoTemporalNego.MostrarDetallePedidosTemporal().ToList();
+            listaTemporal = detallePedidoTemporalNego.MostrarDetallePedidosTemporal().Where(c => c.IdUsuario == idUsuarioActual).ToList();
 
             sumaTotalCarrito = 0;
 
@@ -143,7 +148,7 @@ namespace Tienda
         {
             dgvPedidosRealizados.Columns[0].Visible = true;
             
-            dgvPedidosRealizados.DataSource = pedidoNego.MostrarPedidos().Where(c => c.IdUsuario == Login.idUsuario).ToList();
+            dgvPedidosRealizados.DataSource = pedidoNego.MostrarPedidos().Where(c => c.IdUsuario == idUsuarioActual).ToList();
             dgvPedidosRealizados.DataBind();
 
             dgvPedidosRealizados.Columns[0].Visible = false;

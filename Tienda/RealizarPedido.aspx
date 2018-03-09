@@ -18,7 +18,7 @@
         <div class="form-group">
             <asp:Label ID="lblNumeroPedido" runat="server" Text="CODIGO PEDIDO" CssClass="col-md-2 control-label"></asp:Label>
             <div class="col-md-4">
-                <asp:TextBox ID="txtNumeroPedido" runat="server" CssClass="form-control"></asp:TextBox>
+                <asp:TextBox ID="txtNumeroPedido" runat="server" CssClass="form-control" placeholder="Ingrese el Codigo de Pedido"></asp:TextBox>
             </div>
         </div>
 
@@ -68,6 +68,7 @@
                 </asp:GridView>
             </div>
         </div>
+        
         <!-- TOTAL DE PEDIDO -->
         <div class="form-group">
             <asp:Label ID="lblTotalTitulo" runat="server" Text="TOTAL EN $$$: " CssClass="col-md-2 alineaderecha"> </asp:Label>
@@ -101,5 +102,4 @@
             </div>
         </div>
     </asp:Panel>
-
 </asp:Content>

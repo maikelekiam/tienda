@@ -89,12 +89,12 @@ namespace CapaDominio
 			}
 		}
 		
-		private IList<DetallePedido> detallePedidos = new List<DetallePedido>();
-		public virtual IList<DetallePedido> DetallePedidos
+		private IList<PresupuestoTemporal> presupuestoTemporals = new List<PresupuestoTemporal>();
+		public virtual IList<PresupuestoTemporal> PresupuestoTemporals
 		{
 			get
 			{
-				return this.detallePedidos;
+				return this.presupuestoTemporals;
 			}
 		}
 		
@@ -104,6 +104,15 @@ namespace CapaDominio
 			get
 			{
 				return this.detallePedidoTemporals;
+			}
+		}
+		
+		private IList<DetallePedido> detallePedidos = new List<DetallePedido>();
+		public virtual IList<DetallePedido> DetallePedidos
+		{
+			get
+			{
+				return this.detallePedidos;
 			}
 		}
 		

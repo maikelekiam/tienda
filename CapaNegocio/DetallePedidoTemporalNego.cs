@@ -21,9 +21,9 @@ namespace CapaNegocio
         {
             detallePedidoTemporalRepo.GuardarDetallePedidoTemporal(detallePedidoTemporal);
         }
-        public void BorrarListaDetallePedidoTemporal()
+        public void BorrarListaDetallePedidoTemporal(int idUsu)
         {
-            detallePedidoTemporalRepo.BorrarListaDetallePedidoTemporal();
+            detallePedidoTemporalRepo.BorrarListaDetallePedidoTemporal(idUsu);
         }
         public void BorrarDetallePedidoTemporal(DetallePedidoTemporal detallePedidoTemporal)
         {
@@ -41,9 +41,9 @@ namespace CapaNegocio
         {
             detallePedidoTemporalRepo.ActualizarDetallePedidoTemporal(detallePedidoTemporal);
         }
-        public DetallePedidoTemporal FiltrarDetallePedidoTemporalSegunProducto(int id)
+        public DetallePedidoTemporal FiltrarDetallePedidoTemporalSegunProducto(int id, int idUsu)
         {
-            return detallePedidoTemporalRepo.FiltrarDetallePedidoTemporalSegunProducto(id);
+            return detallePedidoTemporalRepo.FiltrarDetallePedidoTemporalSegunProducto(id,idUsu);
         }
     }
 }

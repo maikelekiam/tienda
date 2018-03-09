@@ -13,11 +13,14 @@ namespace Tienda
     {
         PedidoNego pedidoNego = new PedidoNego();
         public static int idPedidoSeleccionado;
+        int idUsuarioActual;
 
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
             {
+                idUsuarioActual = Convert.ToInt32(Session["userid"]);
+
                 MostrarPedidosRealizados();
             }
         }
@@ -26,7 +29,7 @@ namespace Tienda
         {
             dgvPedidosRealizados.Columns[0].Visible = true;
 
-            dgvPedidosRealizados.DataSource = pedidoNego.MostrarPedidos().Where(c => c.IdUsuario == Login.idUsuario).ToList();
+            dgvPedidosRealizados.DataSource = pedidoNego.MostrarPedidos().Where(c => c.IdUsuario == idUsuarioActual).ToList();
             dgvPedidosRealizados.DataBind();
 
             dgvPedidosRealizados.Columns[0].Visible = false;

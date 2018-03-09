@@ -17,5 +17,24 @@ namespace CapaRepositorio
 
             }
         }
+        public void ActualizarUsuario(Usuario usuario)
+        {
+            using (ModeloDeDominio modeloDeDominio = new ModeloDeDominio())
+            {
+                modeloDeDominio.AttachCopy(usuario);
+                modeloDeDominio.SaveChanges();
+            }
+        }
+        public void ActualizarMargenUsuario(int margen, int id)
+        {
+            using (ModeloDeDominio modeloDeDominio = new ModeloDeDominio())
+            {
+                Usuario usuario = modeloDeDominio.Usuarios.Where(c => c.IdUsuario == id).First();
+
+                usuario.Margen = margen;
+
+                modeloDeDominio.SaveChanges();
+            }
+        }
     }
 }

@@ -22,18 +22,57 @@ using CapaDominio;
 
 namespace CapaDominio	
 {
-	public partial class Pedido
+	public partial class PresupuestoTemporal
 	{
-		private int idPedido;
-		public virtual int IdPedido
+		private int idPresupuestoTemporal;
+		public virtual int IdPresupuestoTemporal
 		{
 			get
 			{
-				return this.idPedido;
+				return this.idPresupuestoTemporal;
 			}
 			set
 			{
-				this.idPedido = value;
+				this.idPresupuestoTemporal = value;
+			}
+		}
+		
+		private int? idProducto;
+		public virtual int? IdProducto
+		{
+			get
+			{
+				return this.idProducto;
+			}
+			set
+			{
+				this.idProducto = value;
+			}
+		}
+		
+		private int? cantidad;
+		public virtual int? Cantidad
+		{
+			get
+			{
+				return this.cantidad;
+			}
+			set
+			{
+				this.cantidad = value;
+			}
+		}
+		
+		private decimal? precio;
+		public virtual decimal? Precio
+		{
+			get
+			{
+				return this.precio;
+			}
+			set
+			{
+				this.precio = value;
 			}
 		}
 		
@@ -50,55 +89,16 @@ namespace CapaDominio
 			}
 		}
 		
-		private int? pedidoDia;
-		public virtual int? PedidoDia
+		private Producto producto;
+		public virtual Producto Producto
 		{
 			get
 			{
-				return this.pedidoDia;
+				return this.producto;
 			}
 			set
 			{
-				this.pedidoDia = value;
-			}
-		}
-		
-		private string pedidoMes;
-		public virtual string PedidoMes
-		{
-			get
-			{
-				return this.pedidoMes;
-			}
-			set
-			{
-				this.pedidoMes = value;
-			}
-		}
-		
-		private int? pedidoAnio;
-		public virtual int? PedidoAnio
-		{
-			get
-			{
-				return this.pedidoAnio;
-			}
-			set
-			{
-				this.pedidoAnio = value;
-			}
-		}
-		
-		private string numeroPedido;
-		public virtual string NumeroPedido
-		{
-			get
-			{
-				return this.numeroPedido;
-			}
-			set
-			{
-				this.numeroPedido = value;
+				this.producto = value;
 			}
 		}
 		
@@ -112,15 +112,6 @@ namespace CapaDominio
 			set
 			{
 				this.usuario = value;
-			}
-		}
-		
-		private IList<DetallePedido> detallePedidos = new List<DetallePedido>();
-		public virtual IList<DetallePedido> DetallePedidos
-		{
-			get
-			{
-				return this.detallePedidos;
 			}
 		}
 		

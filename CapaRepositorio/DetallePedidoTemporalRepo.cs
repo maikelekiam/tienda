@@ -25,11 +25,11 @@ namespace CapaRepositorio
                 modeloDeDominio.SaveChanges();
             }
         }
-        public void BorrarListaDetallePedidoTemporal()
+        public void BorrarListaDetallePedidoTemporal(int idUsu)
         {
             using (ModeloDeDominio modeloDeDominio = new ModeloDeDominio())
             {
-                IQueryable<DetallePedidoTemporal> query = modeloDeDominio.GetAll<DetallePedidoTemporal>();
+                IList<DetallePedidoTemporal> query = modeloDeDominio.DetallePedidoTemporals.Where(c=>c.IdUsuario==idUsu).ToList();
 
                 foreach (DetallePedidoTemporal dpt in query)
                 {
@@ -75,11 +75,11 @@ namespace CapaRepositorio
                 modeloDeDominio.SaveChanges();
             }
         }
-        public DetallePedidoTemporal FiltrarDetallePedidoTemporalSegunProducto(int id)
+        public DetallePedidoTemporal FiltrarDetallePedidoTemporalSegunProducto(int id, int idUsu)
         {
             using (ModeloDeDominio modeloDeDominio = new ModeloDeDominio())
             {
-                DetallePedidoTemporal result = modeloDeDominio.DetallePedidoTemporals.Where(c => c.IdProducto == id).FirstOrDefault();
+                DetallePedidoTemporal result = modeloDeDominio.DetallePedidoTemporals.Where(c => c.IdProducto == id).Where(d=>d.IdUsuario==idUsu).FirstOrDefault();
                 return result;
             }
         }

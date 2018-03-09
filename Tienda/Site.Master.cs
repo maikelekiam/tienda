@@ -82,6 +82,12 @@ namespace Tienda
         {
             Context.GetOwinContext().Authentication.SignOut();
         }
+
+        protected void btnLogOff_Click(object sender, EventArgs e)
+        {
+            Session.Abandon();
+            Response.Redirect("Login.aspx");
+        }
     }
 
 }

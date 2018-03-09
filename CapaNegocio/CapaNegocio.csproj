@@ -46,6 +46,7 @@
     <Compile Include="DetallePedidoNego.cs" />
     <Compile Include="DetallePedidoTemporalNego.cs" />
     <Compile Include="PedidoNego.cs" />
+    <Compile Include="PresupuestoNego.cs" />
     <Compile Include="ProductoNego.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UsuarioNego.cs" />
