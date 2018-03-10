@@ -68,7 +68,7 @@
                 </asp:GridView>
             </div>
         </div>
-        
+
         <!-- TOTAL DE PEDIDO -->
         <div class="form-group">
             <asp:Label ID="lblTotalTitulo" runat="server" Text="TOTAL EN $$$: " CssClass="col-md-2 alineaderecha"> </asp:Label>
@@ -102,4 +102,33 @@
             </div>
         </div>
     </asp:Panel>
+
+    <%--<div class="form-group">
+        <!-- PARA ENVIAR MAILS -->
+        <div class="form-group">
+            <asp:Label ID="lbl01" runat="server" Text="Email From" CssClass="col-md-2 control-label"> </asp:Label>
+            <div class="col-md-6 col-xs-12">
+                <asp:TextBox ID="txtfrom" runat="server" CssClass="form-control"></asp:TextBox><br />
+            </div>
+        </div>
+        <div class="form-group">
+            <asp:Label ID="lbl02" runat="server" Text="Password" CssClass="col-md-2 control-label"> </asp:Label>
+            <div class="col-md-6 col-xs-12">
+                <asp:TextBox ID="txtpassword" runat="server" CssClass="form-control"></asp:TextBox><br />
+            </div>
+        </div>
+        <div class="form-group">
+            <asp:Label ID="lbl03" runat="server" Text="To" CssClass="col-md-2 control-label"> </asp:Label>
+            <div class="col-md-6 col-xs-12">
+                <asp:TextBox ID="txtto" runat="server" CssClass="form-control"></asp:TextBox><br />
+            </div>
+        </div>
+        <div class="form-group">
+            <asp:Label ID="lbl04" runat="server" Text="Mensaje" CssClass="col-md-2 control-label"> </asp:Label>
+            <div class="col-md-6 col-xs-12">
+                <asp:TextBox ID="txtmensaje" runat="server" CssClass="form-control"></asp:TextBox><br />
+            </div>
+        </div>
+        <asp:Button ID="btnEnviarMail" runat="server" Text="Enviar Mail" CssClass="btn btn-success" OnClick="btnEnviarMail_Click" />
+    </div>--%>
 </asp:Content>

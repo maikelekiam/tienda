@@ -5,7 +5,6 @@ using System.Web;
 using System.Net;
 using System.Net.Mail;
 
-
 namespace Tienda
 {
     public class Email
@@ -19,20 +18,20 @@ namespace Tienda
             {
                 m.From = new MailAddress(from);
                 m.To.Add(new MailAddress(to));
+                m.Subject = "Mensaje desde Sistema Informatico";
                 m.Body = mensaje;
+                m.IsBodyHtml = true;
                 smtp.Host = "smtp.gmail.com";
                 smtp.Port = 587;
                 smtp.Credentials = new NetworkCredential(from, password);
                 smtp.EnableSsl = true;
                 smtp.Send(m);
 
+                
 
-
-                //m.IsBodyHtml = true;
+                
 
                 return true;
-
-
             }
             catch (Exception e)
             {
@@ -40,8 +39,5 @@ namespace Tienda
                 return false;
             }
         }
-
-
-
     }
 }

@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using CapaDominio;
 using CapaNegocio;
+using System.Data;
 
 namespace Tienda
 {
@@ -47,8 +48,8 @@ namespace Tienda
                 MostrarPedidosRealizados();
             }
         }
-        
-        
+
+
         private void LlenarFechas()
         {
             ddlDia.DataSource = listaDia;
@@ -85,6 +86,9 @@ namespace Tienda
                 else
                 {
                     GuardarPedido();
+
+                    EnviarCorreo();
+
                     LimpiarPedido();
                     //detallePedidoTemporalNego.BorrarListaDetallePedidoTemporal(idUsuarioActual);
                     Response.Redirect("Default.aspx");
@@ -147,7 +151,7 @@ namespace Tienda
         public void MostrarPedidosRealizados()
         {
             dgvPedidosRealizados.Columns[0].Visible = true;
-            
+
             dgvPedidosRealizados.DataSource = pedidoNego.MostrarPedidos().Where(c => c.IdUsuario == idUsuarioActual).ToList();
             dgvPedidosRealizados.DataBind();
 
@@ -159,6 +163,58 @@ namespace Tienda
             idPedidoSeleccionado = Convert.ToInt32(dgvPedidosRealizados.Rows[e.RowIndex].Cells[0].Text);
 
             Response.Redirect("MostrarPedido.aspx");
+        }
+        protected void btnEnviarMail_Click(object sender, EventArgs e)
+        {
+            EnviarCorreo();
+        }
+        public void EnviarCorreo()
+        {
+            //string from = txtfrom.Text;
+            //string pass = txtpassword.Text;
+            //string to = txtto.Text;
+            //string msn = txtmensaje.Text;
+
+            //new Email().enviarCorreo(from, pass, to, msn);
+
+
+            //msn = string.Format("Nombre: {1}" + "\n" + "Correo: {2}" + "\n" + "Mensaje:{3}" + "\n", "\n", "juan", "juan@hotmail.com", "mensaje");
+
+            //msn = string.Format("<HTML><h1>{1}</h1></HTML>", "Miguel", txtTotalCarrito.Text);
+
+            //new Email().enviarCorreo("victor.alejandro.arribas@gmail.com", "vaaa2018", "miarcamone@gmail.com", msn);
+
+            string msn = "<HTML><p1><h3>Estimado Sr. " + Session["userlogin"].ToString() + "</h3></p1>";
+            msn += "<br />";
+            msn += "Nos comunicamos con Ud. para informarle que su pedido se ha realizado con exito.";
+            msn += "<br /><br />";
+            msn += "A continuacion detallamos el mismo: ";
+            msn += "<br /><br />";
+            msn += "<table border CELLPADDING=8 CELLSPACING=0><TR><TH>Producto</TH><TH>Cantidad</TH><TH>Precio</TH></TR>";
+
+            foreach (DetallePedidoTemporal dpt in listaTemporal)
+            {
+                string nombre = productoNego.ObtenerProductoSegunIdProducto(Convert.ToInt32(dpt.IdProducto)).Nombre;
+                msn += "<tr><Td>" + nombre + "</Td><TD ALIGN=right>" + dpt.Cantidad + "</Td><TD ALIGN=right>" + "$ " + dpt.Precio + "</Td></tr>";
+            }
+            msn += "</TABLE>";
+
+            //msn += "<br />";
+            msn += "<p1><h3>CODIGO DEL PEDIDO: " + txtNumeroPedido.Text + "</h3></p1>";
+
+            //msn += "<br />";
+            msn += "<p1><h3>FECHA: " + ddlDia.Text + " de " + ddlMes.Text + " de " + ddlAnio.Text +"</h3></p1>";
+
+            //msn += "<br />";
+            msn += "<p1><h3>TOTAL A PAGAR: $" + Convert.ToString(sumaTotalCarrito) + "</h3></p1>";
+            
+            msn += "<br />";
+            msn += "Saludamos a Ud. muy Atte.";
+            
+            msn += "<br /><br />";
+            msn += "LA EMPRESA</HTML>";
+
+            new Email().enviarCorreo("victor.alejandro.arribas@gmail.com", "vaaa2018", "miarcamone@gmail.com", msn);
         }
     }
 }
