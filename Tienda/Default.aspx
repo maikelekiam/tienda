@@ -62,38 +62,95 @@
                     <h4>Carrito</h4>
                 </div>
                 <!--CARRITO-->
-                <div class="form-group">
-                    <br />
-                    <asp:Label ID="lblTotalCarrito" runat="server" Text="TOTAL: " CssClass="col-md-2 alineaderecha"> </asp:Label>
-                    <asp:Label ID="txtTotalCarrito" runat="server" CssClass="col-md-2 alineaizquierda" Font-Bold="true"> </asp:Label>
+                <div class="form-group" id="areaImprimir">
+                    <div class="form-group">
+                        <br />
+                        <asp:Label ID="lblTotalCarrito" runat="server" Text="TOTAL: " CssClass="col-md-2 alineaderecha"> </asp:Label>
+                        <asp:Label ID="txtTotalCarrito" runat="server" CssClass="col-md-2 alineaizquierda" Font-Bold="true"> </asp:Label>
 
-                    <asp:Label ID="lblTotalProductos" runat="server" Text="CANTIDAD PRODUCTOS: " CssClass="col-md-2 alineaderecha"> </asp:Label>
-                    <asp:Label ID="txtTotalProductos" runat="server" CssClass="col-md-2 alineaizquierda" Font-Bold="true"> </asp:Label>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-10 col-md-offset-1">
-                        <asp:GridView ID="dgvCarrito" runat="server" AutoGenerateColumns="false"
-                            CssClass="table table-hover" BorderWidth="2px" EmptyDataText="Carrito vacio" ShowHeaderWhenEmpty="true"
-                            OnRowDeleting="dgvCarrito_RowDeleting">
-                            <Columns>
-                                <asp:TemplateField HeaderStyle-BackColor="#cccccc" HeaderText="Producto" HeaderStyle-HorizontalAlign="Left" HeaderStyle-Font-Bold="true" ItemStyle-HorizontalAlign="Center" HeaderStyle-Width="150">
-                                    <ItemTemplate>
-                                        <asp:Label ID="Label1" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "Producto.Codigo") %>'></asp:Label>
-                                    </ItemTemplate>
-                                </asp:TemplateField>
-                                <asp:TemplateField HeaderStyle-BackColor="#cccccc" HeaderText="Descripcion" HeaderStyle-HorizontalAlign="Left" HeaderStyle-Font-Bold="true" ItemStyle-HorizontalAlign="Center" HeaderStyle-Width="150">
-                                    <ItemTemplate>
-                                        <asp:Label ID="Label2" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "Producto.Nombre") %>'></asp:Label>
-                                    </ItemTemplate>
-                                </asp:TemplateField>
-                                <asp:BoundField HeaderStyle-BackColor="#cccccc" HeaderText="Cantidad" DataField="cantidad" ItemStyle-HorizontalAlign="Center" HeaderStyle-Width="100" />
-                                <asp:BoundField HeaderStyle-BackColor="#cccccc" HeaderText="Precio" DataField="precio" ItemStyle-CssClass="t-cost" DataFormatString="{0:c}" ItemStyle-HorizontalAlign="Center" HeaderStyle-Width="100" />
-                                <asp:CommandField HeaderStyle-BackColor="#cccccc" ShowDeleteButton="True" ButtonType="Image" DeleteImageUrl="~/image/deletered.png" HeaderStyle-Width="20" />
-                            </Columns>
-                        </asp:GridView>
+                        <asp:Label ID="lblTotalProductos" runat="server" Text="CANTIDAD PRODUCTOS: " CssClass="col-md-2 alineaderecha"> </asp:Label>
+                        <asp:Label ID="txtTotalProductos" runat="server" CssClass="col-md-2 alineaizquierda" Font-Bold="true"> </asp:Label>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-10 col-md-offset-1">
+                            <asp:GridView ID="dgvCarrito" runat="server" AutoGenerateColumns="false"
+                                CssClass="table table-hover" BorderWidth="2px" EmptyDataText="Carrito vacio" ShowHeaderWhenEmpty="true"
+                                OnRowDeleting="dgvCarrito_RowDeleting">
+                                <Columns>
+                                    <asp:TemplateField HeaderStyle-BackColor="#cccccc" HeaderText="Producto" HeaderStyle-HorizontalAlign="Left" HeaderStyle-Font-Bold="true" ItemStyle-HorizontalAlign="Center" HeaderStyle-Width="150">
+                                        <ItemTemplate>
+                                            <asp:Label ID="Label1" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "Producto.Codigo") %>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderStyle-BackColor="#cccccc" HeaderText="Descripcion" HeaderStyle-HorizontalAlign="Left" HeaderStyle-Font-Bold="true" ItemStyle-HorizontalAlign="Center" HeaderStyle-Width="150">
+                                        <ItemTemplate>
+                                            <asp:Label ID="Label2" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "Producto.Nombre") %>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:BoundField HeaderStyle-BackColor="#cccccc" HeaderText="Cantidad" DataField="cantidad" ItemStyle-HorizontalAlign="Center" HeaderStyle-Width="100" />
+                                    <asp:BoundField HeaderStyle-BackColor="#cccccc" HeaderText="Precio" DataField="precio" ItemStyle-CssClass="t-cost" DataFormatString="{0:c}" ItemStyle-HorizontalAlign="Center" HeaderStyle-Width="100" />
+                                    <asp:CommandField HeaderStyle-BackColor="#cccccc" ShowDeleteButton="True" ButtonType="Image" DeleteImageUrl="~/image/deletered.png" HeaderStyle-Width="20" />
+                                </Columns>
+                            </asp:GridView>
+                        </div>
                     </div>
                 </div>
+                <input type="button" onclick="printDiv('areaImprimir')" value="Imprimir Presupuesto" />
             </asp:Panel>
         </ContentTemplate>
     </asp:UpdatePanel>
+
+
+
+
+    <div class="form-group">
+        <!-- DESCRIPCION DEL FONDO -->
+        <div class="form-group">
+            <asp:Label ID="lbl01" runat="server" Text="Email From" CssClass="col-md-2 control-label"> </asp:Label>
+            <div class="col-md-6 col-xs-12">
+                <asp:TextBox ID="txtfrom" runat="server" CssClass="form-control"></asp:TextBox><br />
+            </div>
+        </div>
+        <div class="form-group">
+            <asp:Label ID="lbl02" runat="server" Text="Password" CssClass="col-md-2 control-label"> </asp:Label>
+            <div class="col-md-6 col-xs-12">
+                <asp:TextBox ID="txtpassword" runat="server" CssClass="form-control"></asp:TextBox><br />
+            </div>
+        </div>
+        <div class="form-group">
+            <asp:Label ID="lbl03" runat="server" Text="To" CssClass="col-md-2 control-label"> </asp:Label>
+            <div class="col-md-6 col-xs-12">
+                <asp:TextBox ID="txtto" runat="server" CssClass="form-control"></asp:TextBox><br />
+            </div>
+        </div>
+        <div class="form-group">
+            <asp:Label ID="lbl04" runat="server" Text="Mensaje" CssClass="col-md-2 control-label"> </asp:Label>
+            <div class="col-md-6 col-xs-12">
+                <asp:TextBox ID="txtmensaje" runat="server" CssClass="form-control"></asp:TextBox><br />
+            </div>
+        </div>
+        <asp:Button ID="btnEnviarMail" runat="server" Text="Enviar Mail" CssClass="btn btn-success" OnClick="btnEnviarMail_Click"/>
+
+    </div>
+
+
+
+
+
+    <script>
+        function printDiv(nombreDiv) {
+            var contenido = document.getElementById(nombreDiv).innerHTML;
+            var contenidoOriginal = document.body.innerHTML;
+
+            document.body.innerHTML = contenido;
+
+            window.print();
+
+            document.body.innerHTML = contenidoOriginal;
+        }
+    </script>
+
+
+
+
 </asp:Content>

@@ -432,6 +432,7 @@
     <Content Include="js\bootstrap\js\bootstrap.js" />
     <Content Include="js\bootstrap\js\bootstrap.min.js" />
     <Content Include="js\custom.js" />
+    <Content Include="js\gistfile1.js" />
     <Content Include="js\jquery-2.1.1.min.js" />
     <Content Include="js\jquery.dcjqaccordion.js" />
     <Content Include="js\jquery.dcjqaccordion.min.js" />
@@ -572,6 +573,7 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Email.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

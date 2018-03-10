@@ -269,5 +269,27 @@ namespace Tienda
 
             MostrarCarrito();
         }
+
+        protected void btnEnviarMail_Click(object sender, EventArgs e)
+        {
+            EnviarCorreo();
+        }
+        public void EnviarCorreo()
+        {
+            string from = txtfrom.Text;
+            string pass = txtpassword.Text;
+            string to = txtto.Text;
+            string msn = txtmensaje.Text;
+
+            new Email().enviarCorreo(from, pass, to, msn);
+
+
+
+
+        }
+
+
+
+
     }
 }
