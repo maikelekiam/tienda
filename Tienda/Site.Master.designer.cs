@@ -22,6 +22,15 @@ namespace Tienda {
         protected global::System.Web.UI.WebControls.Label lbl18;
         
         /// <summary>
+        /// btnUsuarios control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnUsuarios;
+        
+        /// <summary>
         /// btnLogOff control.
         /// </summary>
         /// <remarks>

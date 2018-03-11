@@ -96,7 +96,7 @@ namespace Tienda
             }
             else
             {
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "Correct", "alert('Ingrese Codigo de Pedido.')", true);
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "Correct", "alert('Debe Ingresar un Codigo de Pedido.')", true);
             }
         }
 
@@ -164,10 +164,6 @@ namespace Tienda
 
             Response.Redirect("MostrarPedido.aspx");
         }
-        protected void btnEnviarMail_Click(object sender, EventArgs e)
-        {
-            EnviarCorreo();
-        }
         public void EnviarCorreo()
         {
             //string from = txtfrom.Text;
@@ -185,17 +181,18 @@ namespace Tienda
             //new Email().enviarCorreo("victor.alejandro.arribas@gmail.com", "vaaa2018", "miarcamone@gmail.com", msn);
 
             string msn = "<HTML><p1><h3>Estimado Sr. " + Session["userlogin"].ToString() + "</h3></p1>";
-            msn += "<br />";
+            
             msn += "Nos comunicamos con Ud. para informarle que su pedido se ha realizado con exito.";
             msn += "<br /><br />";
             msn += "A continuacion detallamos el mismo: ";
             msn += "<br /><br />";
-            msn += "<table border CELLPADDING=8 CELLSPACING=0><TR><TH>Producto</TH><TH>Cantidad</TH><TH>Precio</TH></TR>";
+            msn += "<table border CELLPADDING=8 CELLSPACING=0><TR><TH>Codigo</TH><TH>Producto</TH><TH>Cantidad</TH><TH>Precio</TH></TR>";
 
             foreach (DetallePedidoTemporal dpt in listaTemporal)
             {
                 string nombre = productoNego.ObtenerProductoSegunIdProducto(Convert.ToInt32(dpt.IdProducto)).Nombre;
-                msn += "<tr><Td>" + nombre + "</Td><TD ALIGN=right>" + dpt.Cantidad + "</Td><TD ALIGN=right>" + "$ " + dpt.Precio + "</Td></tr>";
+                string codigo = productoNego.ObtenerProductoSegunIdProducto(Convert.ToInt32(dpt.IdProducto)).Codigo;
+                msn += "<tr><TD ALIGN=center>" + codigo + "</Td><TD>" + nombre + "</Td><TD ALIGN=right>" + dpt.Cantidad + "</Td><TD ALIGN=right>" + "$ " + dpt.Precio + "</Td></tr>";
             }
             msn += "</TABLE>";
 
@@ -203,18 +200,18 @@ namespace Tienda
             msn += "<p1><h3>CODIGO DEL PEDIDO: " + txtNumeroPedido.Text + "</h3></p1>";
 
             //msn += "<br />";
-            msn += "<p1><h3>FECHA: " + ddlDia.Text + " de " + ddlMes.Text + " de " + ddlAnio.Text +"</h3></p1>";
+            msn += "<p1><h3>FECHA: " + ddlDia.Text + " de " + ddlMes.Text + " de " + ddlAnio.Text + "</h3></p1>";
 
             //msn += "<br />";
             msn += "<p1><h3>TOTAL A PAGAR: $" + Convert.ToString(sumaTotalCarrito) + "</h3></p1>";
-            
+
             msn += "<br />";
             msn += "Saludamos a Ud. muy Atte.";
-            
+
             msn += "<br /><br />";
             msn += "LA EMPRESA</HTML>";
 
-            new Email().enviarCorreo("victor.alejandro.arribas@gmail.com", "vaaa2018", "miarcamone@gmail.com", msn);
+            new Email().enviarCorreo("victor.alejandro.arribas@gmail.com", "vaaa2018", Session["usermail"].ToString(), msn);
         }
     }
 }

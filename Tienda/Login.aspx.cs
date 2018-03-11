@@ -14,10 +14,6 @@ namespace Tienda
         UsuarioNego usuarioNego = new UsuarioNego();
         DetallePedidoTemporalNego detallePedidoTemporalNego = new DetallePedidoTemporalNego();
 
-        //public static int? grupo;
-        //public static string nombreUsuario;
-        //public static int? idUsuario;
-
         protected void Page_Load(object sender, EventArgs e)
         {
             //detallePedidoTemporalNego.BorrarListaDetallePedidoTemporal();
@@ -35,9 +31,9 @@ namespace Tienda
 
                 Session["margenid"] = Convert.ToString(usuario.Margen);
 
-                //grupo = usuario.Grupo;
-                //nombreUsuario = usuario.Nombre;
-                //idUsuario = usuario.IdUsuario;
+                Session["usermail"] = Convert.ToString(usuario.Mail);
+
+                Session["usergrupo"] = Convert.ToString(usuario.Grupo);
 
                 Response.Redirect("Default.aspx");
             }
