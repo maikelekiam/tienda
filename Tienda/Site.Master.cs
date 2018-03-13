@@ -75,6 +75,18 @@ namespace Tienda
             else
             {
                 lbl18.Text = Session["userlogin"].ToString()+" conectado!";
+
+                //if (Session["userlogin"].ToString() == "Admin")
+                if (Session["usergrupo"].ToString() == "1")
+                {
+                    //btnUsuarios.Visible = true;
+                    productos.Visible = true;
+                }
+                else
+                {
+                    //btnUsuarios.Visible = false;
+                    productos.Visible = false;
+                }
             }
         }
 
@@ -87,6 +99,11 @@ namespace Tienda
         {
             Session.Abandon();
             Response.Redirect("Login.aspx");
+        }
+
+        protected void btnUsuarios_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("AltaUsuario.aspx");
         }
     }
 

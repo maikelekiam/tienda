@@ -6,7 +6,6 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using CapaDominio;
 using CapaNegocio;
-using System.Data;
 
 namespace Tienda
 {
@@ -22,7 +21,7 @@ namespace Tienda
 
         static IList<DetallePedidoTemporal> listaTemporal = new List<DetallePedidoTemporal>();
         static IList<PresupuestoTemporal> listaMargen = new List<PresupuestoTemporal>();
-        public List<int> listaPorcentajes = new List<int> { 0, 10, 20, 30, 40, 50 };
+        public List<int> listaPorcentajes = new List<int> { 0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100, 150, 200 };
 
         static int idProductoActual;
         static decimal? precioActual;
@@ -37,6 +36,9 @@ namespace Tienda
         {
             if (!Page.IsPostBack)
             {
+                
+                
+
                 LlenarListaPorcentajes();
                 LlenarListaProductos();
                 idUsuarioActual = Convert.ToInt32(Session["userid"]);
@@ -44,6 +46,8 @@ namespace Tienda
                 ddlMargen.Text = Convert.ToString(margen);
 
                 MostrarCarrito();
+
+                //MostrarFrillaProductos(); //DESPUES QUITAR ESTO
             }
         }
 
@@ -269,5 +273,19 @@ namespace Tienda
 
             MostrarCarrito();
         }
+
+        protected void btnVaciarCarrito_Click(object sender, EventArgs e)
+        {
+            int id = Convert.ToInt32(Session["userid"].ToString());
+
+            detallePedidoTemporalNego.BorrarListaDetallePedidoTemporal(id);
+            presupuestoNego.BorrarListaPresupuestoTemporal(id);
+
+            Response.Redirect("Default.aspx");
+        }
+
+        
+
+        
     }
 }

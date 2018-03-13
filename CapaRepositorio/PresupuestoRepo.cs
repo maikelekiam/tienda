@@ -62,5 +62,18 @@ namespace CapaRepositorio
                 }
             }
         }
+        public void BorrarListaPresupuestoTemporal(int idUsu)
+        {
+            using (ModeloDeDominio modeloDeDominio = new ModeloDeDominio())
+            {
+                IList<PresupuestoTemporal> query = modeloDeDominio.PresupuestoTemporals.Where(c => c.IdUsuario == idUsu).ToList();
+
+                foreach (PresupuestoTemporal dpt in query)
+                {
+                    modeloDeDominio.Delete(dpt);
+                    modeloDeDominio.SaveChanges();
+                }
+            }
+        }
     }
 }

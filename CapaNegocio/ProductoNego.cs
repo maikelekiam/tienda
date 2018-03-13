@@ -25,5 +25,13 @@ namespace CapaNegocio
         {
             return productoRepo.ObtenerProductoSegunIdProducto(id);
         }
+        public void ActualizarProducto(Producto producto)
+        {
+            productoRepo.ActualizarProducto(producto);
+        }
+        public void EliminarListaProductos()
+        {
+            productoRepo.EliminarListaProductos();
+        }
     }
 }

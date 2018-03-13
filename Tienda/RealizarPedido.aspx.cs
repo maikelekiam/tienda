@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using CapaDominio;
 using CapaNegocio;
+using System.Data;
 
 namespace Tienda
 {
@@ -15,6 +16,7 @@ namespace Tienda
         PedidoNego pedidoNego = new PedidoNego();
         DetallePedidoNego detallePedidoNego = new DetallePedidoNego();
         DetallePedidoTemporalNego detallePedidoTemporalNego = new DetallePedidoTemporalNego();
+        PresupuestoNego presupuestoNego = new PresupuestoNego();
 
         static IList<DetallePedidoTemporal> listaTemporal = new List<DetallePedidoTemporal>();
         static decimal? sumaTotalCarrito = 0;
@@ -47,8 +49,8 @@ namespace Tienda
                 MostrarPedidosRealizados();
             }
         }
-        
-        
+
+
         private void LlenarFechas()
         {
             ddlDia.DataSource = listaDia;
@@ -66,7 +68,7 @@ namespace Tienda
 
         public void MostrarCarrito()
         {
-            dgvCarrito.DataSource = detallePedidoTemporalNego.MostrarDetallePedidosTemporal().Where(c => c.IdUsuario == idUsuarioActual).ToList();
+            dgvCarrito.DataSource = detallePedidoTemporalNego.MostrarDetallePedidosTemporal().Where(c => c.IdUsuario == Convert.ToInt32(Session["userid"])).ToList();
             dgvCarrito.DataBind();
 
             CalcularSumaTotalCarrito();
@@ -76,7 +78,7 @@ namespace Tienda
         {
             if (txtNumeroPedido.Text != "")
             {
-                listaTemporal = detallePedidoTemporalNego.MostrarDetallePedidosTemporal().Where(c => c.IdUsuario == idUsuarioActual).ToList();
+                listaTemporal = detallePedidoTemporalNego.MostrarDetallePedidosTemporal().Where(c => c.IdUsuario == Convert.ToInt32(Session["userid"])).ToList();
 
                 if (listaTemporal.Count == 0)
                 {
@@ -85,14 +87,20 @@ namespace Tienda
                 else
                 {
                     GuardarPedido();
+
+                    EnviarCorreo();
+
                     LimpiarPedido();
+
+                    VaciarCarrito();
+
                     //detallePedidoTemporalNego.BorrarListaDetallePedidoTemporal(idUsuarioActual);
                     Response.Redirect("Default.aspx");
                 }
             }
             else
             {
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "Correct", "alert('Ingrese Codigo de Pedido.')", true);
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "Correct", "alert('Debe Ingresar un Codigo de Pedido.')", true);
             }
         }
 
@@ -100,9 +108,9 @@ namespace Tienda
         {
             Pedido pedido = new Pedido();
 
-            listaTemporal = detallePedidoTemporalNego.MostrarDetallePedidosTemporal().Where(c => c.IdUsuario == idUsuarioActual).ToList();
+            listaTemporal = detallePedidoTemporalNego.MostrarDetallePedidosTemporal().Where(c => c.IdUsuario == Convert.ToInt32(Session["userid"])).ToList();
 
-            pedido.IdUsuario = idUsuarioActual;
+            pedido.IdUsuario = Convert.ToInt32(Session["userid"]);
             pedido.NumeroPedido = txtNumeroPedido.Text;
             pedido.PedidoDia = Convert.ToInt32(ddlDia.Text);
             pedido.PedidoMes = ddlMes.Text;
@@ -133,7 +141,7 @@ namespace Tienda
         }
         public void CalcularSumaTotalCarrito()
         {
-            listaTemporal = detallePedidoTemporalNego.MostrarDetallePedidosTemporal().Where(c => c.IdUsuario == idUsuarioActual).ToList();
+            listaTemporal = detallePedidoTemporalNego.MostrarDetallePedidosTemporal().Where(c => c.IdUsuario == Convert.ToInt32(Session["userid"])).ToList();
 
             sumaTotalCarrito = 0;
 
@@ -147,8 +155,8 @@ namespace Tienda
         public void MostrarPedidosRealizados()
         {
             dgvPedidosRealizados.Columns[0].Visible = true;
-            
-            dgvPedidosRealizados.DataSource = pedidoNego.MostrarPedidos().Where(c => c.IdUsuario == idUsuarioActual).ToList();
+
+            dgvPedidosRealizados.DataSource = pedidoNego.MostrarPedidos().Where(c => c.IdUsuario == Convert.ToInt32(Session["userid"])).ToList();
             dgvPedidosRealizados.DataBind();
 
             dgvPedidosRealizados.Columns[0].Visible = false;
@@ -159,6 +167,62 @@ namespace Tienda
             idPedidoSeleccionado = Convert.ToInt32(dgvPedidosRealizados.Rows[e.RowIndex].Cells[0].Text);
 
             Response.Redirect("MostrarPedido.aspx");
+        }
+        public void EnviarCorreo()
+        {
+            //string from = txtfrom.Text;
+            //string pass = txtpassword.Text;
+            //string to = txtto.Text;
+            //string msn = txtmensaje.Text;
+
+            //new Email().enviarCorreo(from, pass, to, msn);
+
+
+            //msn = string.Format("Nombre: {1}" + "\n" + "Correo: {2}" + "\n" + "Mensaje:{3}" + "\n", "\n", "juan", "juan@hotmail.com", "mensaje");
+
+            //msn = string.Format("<HTML><h1>{1}</h1></HTML>", "Miguel", txtTotalCarrito.Text);
+
+            //new Email().enviarCorreo("victor.alejandro.arribas@gmail.com", "vaaa2018", "miarcamone@gmail.com", msn);
+
+            string msn = "<HTML><p1><h3>Estimado Sr. " + Session["userlogin"].ToString() + "</h3></p1>";
+            
+            msn += "Nos comunicamos con Ud. para informarle que su pedido se ha realizado con exito.";
+            msn += "<br /><br />";
+            msn += "A continuacion detallamos el mismo: ";
+            msn += "<br /><br />";
+            msn += "<table border CELLPADDING=8 CELLSPACING=0><TR><TH>Codigo</TH><TH>Producto</TH><TH>Cantidad</TH><TH>Precio</TH></TR>";
+
+            foreach (DetallePedidoTemporal dpt in listaTemporal)
+            {
+                string nombre = productoNego.ObtenerProductoSegunIdProducto(Convert.ToInt32(dpt.IdProducto)).Nombre;
+                string codigo = productoNego.ObtenerProductoSegunIdProducto(Convert.ToInt32(dpt.IdProducto)).Codigo;
+                msn += "<tr><TD ALIGN=center>" + codigo + "</Td><TD>" + nombre + "</Td><TD ALIGN=right>" + dpt.Cantidad + "</Td><TD ALIGN=right>" + "$ " + dpt.Precio + "</Td></tr>";
+            }
+            msn += "</TABLE>";
+
+            //msn += "<br />";
+            msn += "<p1><h3>CODIGO DEL PEDIDO: " + txtNumeroPedido.Text + "</h3></p1>";
+
+            //msn += "<br />";
+            msn += "<p1><h3>FECHA: " + ddlDia.Text + " de " + ddlMes.Text + " de " + ddlAnio.Text + "</h3></p1>";
+
+            //msn += "<br />";
+            msn += "<p1><h3>TOTAL A PAGAR: $" + Convert.ToString(sumaTotalCarrito) + "</h3></p1>";
+
+            msn += "<br />";
+            msn += "Saludamos a Ud. muy Atte.";
+
+            msn += "<br /><br />";
+            msn += "LA EMPRESA</HTML>";
+
+            new Email().enviarCorreo("victor.alejandro.arribas@gmail.com", "vaaa2018", Session["usermail"].ToString(), msn);
+        }
+        public void VaciarCarrito()
+        {
+            int id=Convert.ToInt32(Session["userid"].ToString());
+
+            detallePedidoTemporalNego.BorrarListaDetallePedidoTemporal(id);
+            presupuestoNego.BorrarListaPresupuestoTemporal(id);
         }
     }
 }

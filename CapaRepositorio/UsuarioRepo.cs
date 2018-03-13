@@ -36,5 +36,30 @@ namespace CapaRepositorio
                 modeloDeDominio.SaveChanges();
             }
         }
+        public IEnumerable<Usuario> MostrarUsuarios()
+        {
+            using (ModeloDeDominio modeloDeDominio = new ModeloDeDominio())
+            {
+                IEnumerable<Usuario> result = modeloDeDominio.Usuarios.ToList();
+                return result;
+            }
+        }
+        public void GuardarUsuario(Usuario usuario)
+        {
+            using (ModeloDeDominio modeloDeDominio = new ModeloDeDominio())
+            {
+                modeloDeDominio.Add(usuario);
+                modeloDeDominio.SaveChanges();
+            }
+        }
+        public Usuario ObtenerUsuario(int id)
+        {
+            using (ModeloDeDominio modeloDeDominio = new ModeloDeDominio())
+            {
+                Usuario usuario = modeloDeDominio.Usuarios.Where(c => c.IdUsuario == id).FirstOrDefault();
+
+                return usuario;
+            }
+        }
     }
 }

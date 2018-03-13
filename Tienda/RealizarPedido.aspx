@@ -68,7 +68,7 @@
                 </asp:GridView>
             </div>
         </div>
-        
+
         <!-- TOTAL DE PEDIDO -->
         <div class="form-group">
             <asp:Label ID="lblTotalTitulo" runat="server" Text="TOTAL EN $$$: " CssClass="col-md-2 alineaderecha"> </asp:Label>

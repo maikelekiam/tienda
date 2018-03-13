@@ -67,13 +67,15 @@
                                     </ul>
                                 </div>
                             </div>
-                            <div id="top-links" class="nav pull-right flip">
+                            <%--<div id="top-links" runat="server" class="nav pull-right flip">--%>
+                            <div runat="server" class="nav pull-right flip">
                                 <ul>
                                     <%--<li><a href="login.html">Login</a></li>
                                     <li><a href="register.html">Register</a></li>--%>
                                     <li>
                                         <asp:Label ID="lbl18" runat="server"></asp:Label>
-                                        <asp:Button ID="btnLogOff" runat="server" Text="Cerrar Sesion" OnClick="btnLogOff_Click" />
+                                        <%--<asp:Button ID="btnUsuarios" runat="server" Text="Usuarios" ForeColor="Black" OnClick="btnUsuarios_Click" />--%>
+                                        <asp:Button ID="btnLogOff" runat="server" Text="Cerrar Sesion" ForeColor="Black" OnClick="btnLogOff_Click" />
                                     </li>
                                 </ul>
                             </div>
@@ -104,7 +106,7 @@
                             <ul class="nav navbar-nav navbar-static-top">
                                 <li><a class="home_link" title="Inicio" href="Default.aspx"><span>Inicio</span></a></li>
                                 <li class="contact-link"><a href="Default.aspx">Armar Pedido</a></li>
-                                <li class="dropdown information-link"><a>Paginas</a>
+                                <%--<li class="dropdown information-link"><a>Paginas</a>
                                     <div class="dropdown-menu">
                                         <ul>
                                             <li><a href="Default.aspx">Armar Pedido</a></li>
@@ -115,9 +117,20 @@
                                     </div>
                                 </li>
                                 <li class="contact-link"><a href="Contact.aspx">Contacto</a></li>
-                                <li class="contact-link"><a href="About.aspx">Nosotros</a></li>
+                                <li class="contact-link"><a href="About.aspx">Nosotros</a></li>--%>
                                 <li class="contact-link"><a href="RealizarPedido.aspx">Carrito Actual</a></li>
                                 <li class="contact-link"><a href="ListarPedidos.aspx">Pedidos Realizados</a></li>
+
+                                <li class="dropdown information-link" runat="server" id="productos"><a>Usuarios</a>
+                                    <div class="dropdown-menu">
+                                        <ul>
+                                            <li><a href="AltaUsuario.aspx">Cargar Usuario</a></li>
+                                            <li><a href="AltaProducto.aspx">Cargar Productos</a></li>
+                                        </ul>
+                                    </div>
+                                </li>
+
+
                                 <li class="custom-link-right"><a href="RealizarPedido.aspx">Realizar PEDIDO</a></li>
                             </ul>
                         </div>
@@ -138,6 +151,62 @@
         </div>
     </form>
 
+    <script>
+        function validarSoloNumeros(e) {
+            tecla = (document.all) ? e.keyCode : e.which;
+            if (tecla == 8) return true;
+            patron = /\d/;
+            return patron.test(String.fromCharCode(tecla));
+        }
+    </script>
+    <script>
+        function validarSoloLetras(e) {
+            tecla = (document.all) ? e.keyCode : e.which;
+            if (tecla == 8) return true;
+            patron = /[A-Za-zñÑ-áéíóúÁÉÍÓÚ\s\t-]/;
+            te = String.fromCharCode(tecla);
+            return patron.test(te);
+        }
+    </script>
+    <script>
+        function validarSoloLetrasYNumeros(e) {
+            tecla = (document.all) ? e.keyCode : e.which;
+            if (tecla == 8) return true;
+            //patron = /\w/; // Acepta números y letras
+            patron = /[A-Za-zñÑ-áéíóúÁÉÍÓÚ\s\t\d-]/;
+            te = String.fromCharCode(tecla);
+            return patron.test(te);
+        }
+    </script>
+    <script>
+        function validarSoloNumerosYGuion(e) {
+            tecla = (document.all) ? e.keyCode : e.which;
+            if (tecla == 8) return true;
+            patron = /[\d-/]/;
+            te = String.fromCharCode(tecla);
+            return patron.test(te);
+        }
+    </script>
+    <script>
+        function validarEmail(e) {
+            tecla = (document.all) ? e.keyCode : e.which;
+            if (tecla == 8) return true;
+            patron = /[A-Za-zñÑ-áéíóúÁÉÍÓÚ\s\t\d-@.]/;
+            te = String.fromCharCode(tecla);
+            return patron.test(te);
+        }
+    </script>
+    <script>
+        function validarTelefonos(e) {
+            tecla = (document.all) ? e.keyCode : e.which;
+            if (tecla == 8) return true;
+            patron = /[\d-()\s]/;
+            te = String.fromCharCode(tecla);
+            return patron.test(te);
+        }
+    </script>
+
+
     <!-- JS Part Start-->
     <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
     <script type="text/javascript" src="js/bootstrap/js/bootstrap.min.js"></script>
@@ -146,6 +215,7 @@
     <script type="text/javascript" src="js/owl.carousel.min.js"></script>
     <script type="text/javascript" src="js/custom.js"></script>
     <script src="js/bootstrap-select.js"></script>
+    <script src="js/gistfile1.js"></script>
     <!-- JS Part End-->
 
 </body>

@@ -160,6 +160,8 @@
     <Content Include="Account\OpenAuthProviders.ascx" />
     <Content Include="Account\Register.aspx" />
     <Content Include="Account\RegisterExternalLogin.aspx" />
+    <Content Include="AltaProducto.aspx" />
+    <Content Include="AltaUsuario.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="css\alineado.css" />
     <Content Include="css\bootstrap-select.css" />
@@ -432,6 +434,7 @@
     <Content Include="js\bootstrap\js\bootstrap.js" />
     <Content Include="js\bootstrap\js\bootstrap.min.js" />
     <Content Include="js\custom.js" />
+    <Content Include="js\gistfile1.js" />
     <Content Include="js\jquery-2.1.1.min.js" />
     <Content Include="js\jquery.dcjqaccordion.js" />
     <Content Include="js\jquery.dcjqaccordion.min.js" />
@@ -502,6 +505,7 @@
     <Content Include="js\bootstrap\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="js\bootstrap\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="js\bootstrap\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="files\Sample.csv" />
     <None Include="Project_Readme.html" />
     <Content Include="Site.Mobile.Master" />
     <None Include="Properties\PublishProfiles\tienda_profile.pubxml" />
@@ -548,6 +552,20 @@
     <Compile Include="Account\RegisterExternalLogin.aspx.designer.cs">
       <DependentUpon>RegisterExternalLogin.aspx</DependentUpon>
     </Compile>
+    <Compile Include="AltaProducto.aspx.cs">
+      <DependentUpon>AltaProducto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AltaProducto.aspx.designer.cs">
+      <DependentUpon>AltaProducto.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AltaUsuario.aspx.cs">
+      <DependentUpon>AltaUsuario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AltaUsuario.aspx.designer.cs">
+      <DependentUpon>AltaUsuario.aspx</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="About.aspx.cs">
       <DependentUpon>About.aspx</DependentUpon>
@@ -572,6 +590,7 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Email.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

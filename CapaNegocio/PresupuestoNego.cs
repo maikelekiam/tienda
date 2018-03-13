@@ -37,5 +37,9 @@ namespace CapaNegocio
         {
             presupuestoRepo.BorrarPresupuestoTemporal(presupuestoTemporal);
         }
+        public void BorrarListaPresupuestoTemporal(int idUsu)
+        {
+            presupuestoRepo.BorrarListaPresupuestoTemporal(idUsu);
+        }
     }
 }

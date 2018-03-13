@@ -24,5 +24,17 @@ namespace CapaNegocio
         {
             usuarioRepo.ActualizarMargenUsuario(margen, id);
         }
+        public IEnumerable<Usuario> MostrarUsuarios()
+        {
+            return usuarioRepo.MostrarUsuarios();
+        }
+        public void GuardarUsuario(Usuario usuario)
+        {
+            usuarioRepo.GuardarUsuario(usuario);
+        }
+        public Usuario ObtenerUsuario(int id)
+        {
+            return usuarioRepo.ObtenerUsuario(id);
+        }
     }
 }
