@@ -17,7 +17,7 @@ namespace Tienda
         {
             if (!Page.IsPostBack)
             {
-                if ((string)Session["userlogin"].ToString() == "Admin")
+                if ((string)Session["usergrupo"].ToString() == "1")
                 {
                     PanelAltaUsuario.Visible = true;
                 }
@@ -48,7 +48,7 @@ namespace Tienda
 
         protected void ddlUsuarios_SelectedIndexChanged(object sender, EventArgs e)
         {
-           
+
 
             Usuario usuario = usuarioNego.ObtenerUsuario(Convert.ToInt32(ddlUsuarios.SelectedItem.Value));
 
@@ -94,32 +94,50 @@ namespace Tienda
         }
         private void GuardarUsuario()
         {
-            Usuario usuario = new Usuario();
+            if (txtNombre.Text != "" && txtContrasenia.Text != "" && txtMail.Text != "" && txtGrupo.Text != "")
+            {
+                Usuario usuario = new Usuario();
 
-            usuario.Nombre = txtNombre.Text;
-            usuario.Contrasenia = txtContrasenia.Text;
-            usuario.Grupo = Convert.ToInt32(txtGrupo.Text);
-            usuario.Margen = 0;
-            usuario.Mail = txtMail.Text;
+                usuario.Nombre = txtNombre.Text;
+                usuario.Contrasenia = txtContrasenia.Text;
+                usuario.Grupo = Convert.ToInt32(txtGrupo.Text);
+                usuario.Margen = 0;
+                usuario.Mail = txtMail.Text;
 
-            usuarioNego.GuardarUsuario(usuario);
+                usuarioNego.GuardarUsuario(usuario);
 
-            MostrarGrillaUsuarios();
+                MostrarGrillaUsuarios();
+            }
+            else
+            {
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "Correct", "alert('Complete todos los campos.')", true);
+            }
         }
+
         private void ActualizarUsuario()
         {
-            Usuario usuario = new Usuario();
+            if (txtNombre.Text != "" && txtContrasenia.Text != "" && txtMail.Text != "" && txtGrupo.Text != "")
+            {
+                Usuario usuario = new Usuario();
 
-            usuario.IdUsuario = Convert.ToInt32(lblIdUsuario.Text);
-            usuario.Nombre = txtNombre.Text;
-            usuario.Contrasenia = txtContrasenia.Text;
-            usuario.Grupo = Convert.ToInt32(txtGrupo.Text);
-            usuario.Margen = 0;
-            usuario.Mail = txtMail.Text;
+                usuario.IdUsuario = Convert.ToInt32(lblIdUsuario.Text);
+                usuario.Nombre = txtNombre.Text;
+                usuario.Contrasenia = txtContrasenia.Text;
+                usuario.Grupo = Convert.ToInt32(txtGrupo.Text);
+                usuario.Margen = 0;
+                usuario.Mail = txtMail.Text;
 
-            usuarioNego.ActualizarUsuario(usuario);
+                usuarioNego.ActualizarUsuario(usuario);
 
-            MostrarGrillaUsuarios();
+                MostrarGrillaUsuarios();
+            }
+            else
+            {
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "Correct", "alert('Complete todos los campos.')", true);
+                btnGuardar.Visible = false;
+                btnActualizar.Visible = true;
+
+            }
         }
     }
 }

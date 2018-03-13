@@ -16,6 +16,7 @@ namespace Tienda
         PedidoNego pedidoNego = new PedidoNego();
         DetallePedidoNego detallePedidoNego = new DetallePedidoNego();
         DetallePedidoTemporalNego detallePedidoTemporalNego = new DetallePedidoTemporalNego();
+        PresupuestoNego presupuestoNego = new PresupuestoNego();
 
         static IList<DetallePedidoTemporal> listaTemporal = new List<DetallePedidoTemporal>();
         static decimal? sumaTotalCarrito = 0;
@@ -67,7 +68,7 @@ namespace Tienda
 
         public void MostrarCarrito()
         {
-            dgvCarrito.DataSource = detallePedidoTemporalNego.MostrarDetallePedidosTemporal().Where(c => c.IdUsuario == idUsuarioActual).ToList();
+            dgvCarrito.DataSource = detallePedidoTemporalNego.MostrarDetallePedidosTemporal().Where(c => c.IdUsuario == Convert.ToInt32(Session["userid"])).ToList();
             dgvCarrito.DataBind();
 
             CalcularSumaTotalCarrito();
@@ -77,7 +78,7 @@ namespace Tienda
         {
             if (txtNumeroPedido.Text != "")
             {
-                listaTemporal = detallePedidoTemporalNego.MostrarDetallePedidosTemporal().Where(c => c.IdUsuario == idUsuarioActual).ToList();
+                listaTemporal = detallePedidoTemporalNego.MostrarDetallePedidosTemporal().Where(c => c.IdUsuario == Convert.ToInt32(Session["userid"])).ToList();
 
                 if (listaTemporal.Count == 0)
                 {
@@ -90,6 +91,9 @@ namespace Tienda
                     EnviarCorreo();
 
                     LimpiarPedido();
+
+                    VaciarCarrito();
+
                     //detallePedidoTemporalNego.BorrarListaDetallePedidoTemporal(idUsuarioActual);
                     Response.Redirect("Default.aspx");
                 }
@@ -104,9 +108,9 @@ namespace Tienda
         {
             Pedido pedido = new Pedido();
 
-            listaTemporal = detallePedidoTemporalNego.MostrarDetallePedidosTemporal().Where(c => c.IdUsuario == idUsuarioActual).ToList();
+            listaTemporal = detallePedidoTemporalNego.MostrarDetallePedidosTemporal().Where(c => c.IdUsuario == Convert.ToInt32(Session["userid"])).ToList();
 
-            pedido.IdUsuario = idUsuarioActual;
+            pedido.IdUsuario = Convert.ToInt32(Session["userid"]);
             pedido.NumeroPedido = txtNumeroPedido.Text;
             pedido.PedidoDia = Convert.ToInt32(ddlDia.Text);
             pedido.PedidoMes = ddlMes.Text;
@@ -137,7 +141,7 @@ namespace Tienda
         }
         public void CalcularSumaTotalCarrito()
         {
-            listaTemporal = detallePedidoTemporalNego.MostrarDetallePedidosTemporal().Where(c => c.IdUsuario == idUsuarioActual).ToList();
+            listaTemporal = detallePedidoTemporalNego.MostrarDetallePedidosTemporal().Where(c => c.IdUsuario == Convert.ToInt32(Session["userid"])).ToList();
 
             sumaTotalCarrito = 0;
 
@@ -152,7 +156,7 @@ namespace Tienda
         {
             dgvPedidosRealizados.Columns[0].Visible = true;
 
-            dgvPedidosRealizados.DataSource = pedidoNego.MostrarPedidos().Where(c => c.IdUsuario == idUsuarioActual).ToList();
+            dgvPedidosRealizados.DataSource = pedidoNego.MostrarPedidos().Where(c => c.IdUsuario == Convert.ToInt32(Session["userid"])).ToList();
             dgvPedidosRealizados.DataBind();
 
             dgvPedidosRealizados.Columns[0].Visible = false;
@@ -212,6 +216,13 @@ namespace Tienda
             msn += "LA EMPRESA</HTML>";
 
             new Email().enviarCorreo("victor.alejandro.arribas@gmail.com", "vaaa2018", Session["usermail"].ToString(), msn);
+        }
+        public void VaciarCarrito()
+        {
+            int id=Convert.ToInt32(Session["userid"].ToString());
+
+            detallePedidoTemporalNego.BorrarListaDetallePedidoTemporal(id);
+            presupuestoNego.BorrarListaPresupuestoTemporal(id);
         }
     }
 }

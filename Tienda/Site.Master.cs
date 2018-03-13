@@ -76,13 +76,16 @@ namespace Tienda
             {
                 lbl18.Text = Session["userlogin"].ToString()+" conectado!";
 
-                if (Session["userlogin"].ToString() == "Admin")
+                //if (Session["userlogin"].ToString() == "Admin")
+                if (Session["usergrupo"].ToString() == "1")
                 {
-                    btnUsuarios.Visible = true;
+                    //btnUsuarios.Visible = true;
+                    productos.Visible = true;
                 }
                 else
                 {
-                    btnUsuarios.Visible = false;
+                    //btnUsuarios.Visible = false;
+                    productos.Visible = false;
                 }
             }
         }

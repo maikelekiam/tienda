@@ -6,7 +6,6 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using CapaDominio;
 using CapaNegocio;
-using System.Data;
 
 namespace Tienda
 {
@@ -37,6 +36,9 @@ namespace Tienda
         {
             if (!Page.IsPostBack)
             {
+                
+                
+
                 LlenarListaPorcentajes();
                 LlenarListaProductos();
                 idUsuarioActual = Convert.ToInt32(Session["userid"]);
@@ -44,6 +46,8 @@ namespace Tienda
                 ddlMargen.Text = Convert.ToString(margen);
 
                 MostrarCarrito();
+
+                //MostrarFrillaProductos(); //DESPUES QUITAR ESTO
             }
         }
 
@@ -269,5 +273,19 @@ namespace Tienda
 
             MostrarCarrito();
         }
+
+        protected void btnVaciarCarrito_Click(object sender, EventArgs e)
+        {
+            int id = Convert.ToInt32(Session["userid"].ToString());
+
+            detallePedidoTemporalNego.BorrarListaDetallePedidoTemporal(id);
+            presupuestoNego.BorrarListaPresupuestoTemporal(id);
+
+            Response.Redirect("Default.aspx");
+        }
+
+        
+
+        
     }
 }

@@ -56,14 +56,16 @@
             <div class="form-group">
                 <asp:Label ID="lblGrupo" runat="server" Text="GRUPO" CssClass="col-md-2 col-xs-6 control-label"> </asp:Label>
                 <div class="col-md-6 col-xs-12">
-                    <asp:TextBox ID="txtGrupo" runat="server" CssClass="form-control"></asp:TextBox><br />
+                    <asp:TextBox ID="txtGrupo" runat="server" CssClass="form-control"
+                        onkeypress="return validarSoloNumeros(event);" MaxLength="2"></asp:TextBox><br />
                 </div>
             </div>
             <!-- MAIL -->
             <div class="form-group">
                 <asp:Label ID="lblMail" runat="server" Text="MAIL" CssClass="col-md-2 col-xs-6 control-label"> </asp:Label>
                 <div class="col-md-6 col-xs-12">
-                    <asp:TextBox ID="txtMail" runat="server" CssClass="form-control"></asp:TextBox><br />
+                    <asp:TextBox ID="txtMail" runat="server" CssClass="form-control"
+                        onkeypress="return validarEmail(event);"></asp:TextBox><br />
                 </div>
             </div>
             <!--BOTONES GUARDAR Y ACTUALIZAR-->

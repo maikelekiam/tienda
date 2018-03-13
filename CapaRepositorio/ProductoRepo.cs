@@ -36,6 +36,26 @@ namespace CapaRepositorio
                 return result;
             }
         }
+        public void ActualizarProducto(Producto producto)
+        {
+            using (ModeloDeDominio modeloDeDominio = new ModeloDeDominio())
+            {
+                modeloDeDominio.AttachCopy(producto);
+                modeloDeDominio.SaveChanges();
+            }
+        }
+        public void EliminarListaProductos()
+        {
+            using (ModeloDeDominio modeloDeDominio = new ModeloDeDominio())
+            {
+                IEnumerable<Producto> result = modeloDeDominio.Productos.ToList();
 
+                foreach (Producto prod in result)
+                {
+                    modeloDeDominio.Delete(prod);
+                    modeloDeDominio.SaveChanges();
+                }
+            }
+        }
     }
 }

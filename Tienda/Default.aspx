@@ -11,14 +11,14 @@
                 BackColor="WhiteSmoke"
                 ForeColor="#000066"
                 Font-Bold="false"
-                Width="100"
+                Width="80"
                 CssClass="selectpicker form-control show-tick"
                 AutoPostBack="true"
                 OnSelectedIndexChanged="ddlMargen_SelectedIndexChanged">
             </asp:DropDownList>
         </div>
+        <asp:Button ID="btnVaciarCarrito" Width="150" runat="server" Text="Vaciar Carrito" CssClass="btn btn-danger" OnClick="btnVaciarCarrito_Click" />
     </div>
-
 
     <!-- SELECCIONAR CODIGO DEL PRODUCTO -->
     <div class="form-group">
@@ -70,6 +70,7 @@
 
                         <asp:Label ID="lblTotalProductos" runat="server" Text="CANTIDAD PRODUCTOS: " CssClass="col-md-2 alineaderecha"> </asp:Label>
                         <asp:Label ID="txtTotalProductos" runat="server" CssClass="col-md-2 alineaizquierda" Font-Bold="true"> </asp:Label>
+
                     </div>
                     <div class="form-group">
                         <div class="col-md-10 col-md-offset-1">
@@ -99,6 +100,14 @@
             </asp:Panel>
         </ContentTemplate>
     </asp:UpdatePanel>
+
+
+    
+
+
+
+
+
 
     <script>
         function printDiv(nombreDiv) {
