@@ -21,9 +21,9 @@ namespace CapaNegocio
         {
             return productoRepo.ObtenerProducto(cod);
         }
-        public Producto ObtenerProductoSegunIdProducto(int id)
+        public Producto ObtenerProductoSegunIdProducto(string cod)
         {
-            return productoRepo.ObtenerProductoSegunIdProducto(id);
+            return productoRepo.ObtenerProductoSegunIdProducto(cod);
         }
         public void ActualizarProducto(Producto producto)
         {
@@ -32,6 +32,10 @@ namespace CapaNegocio
         public void EliminarListaProductos()
         {
             productoRepo.EliminarListaProductos();
+        }
+        public void GuardarProducto(Producto producto)
+        {
+            productoRepo.GuardarProducto(producto);
         }
     }
 }

@@ -23,7 +23,8 @@ namespace Tienda
         static IList<PresupuestoTemporal> listaMargen = new List<PresupuestoTemporal>();
         public List<int> listaPorcentajes = new List<int> { 0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100, 150, 200 };
 
-        static int idProductoActual;
+        //static int idProductoActual;
+        static string codigoProductoActual;
         static decimal? precioActual;
         static int idUsuarioActual;
 
@@ -36,9 +37,6 @@ namespace Tienda
         {
             if (!Page.IsPostBack)
             {
-                
-                
-
                 LlenarListaPorcentajes();
                 LlenarListaProductos();
                 idUsuarioActual = Convert.ToInt32(Session["userid"]);
@@ -47,7 +45,7 @@ namespace Tienda
 
                 MostrarCarrito();
 
-                //MostrarFrillaProductos(); //DESPUES QUITAR ESTO
+                logo.Visible = false;
             }
         }
 
@@ -116,15 +114,16 @@ namespace Tienda
         protected void btnAgregarAlPedido_Click(object sender, EventArgs e)
         {
             Producto producto = productoNego.ObtenerProducto(ddlProducto.Text);
-            idProductoActual = producto.IdProducto;
+            codigoProductoActual = producto.Codigo;
             precioActual = producto.Precio;
 
             if (listaTemporal.Count == 0)
             {
                 DetallePedidoTemporal detallePedidoTemporal = new DetallePedidoTemporal();
 
+                detallePedidoTemporal.CodigoProducto = producto.Codigo;
+                detallePedidoTemporal.NombreProducto = producto.Nombre;
                 detallePedidoTemporal.Cantidad = Convert.ToInt32(txtCantidad.Text);
-                detallePedidoTemporal.IdProducto = producto.IdProducto;
                 detallePedidoTemporal.Precio = producto.Precio;
                 detallePedidoTemporal.IdUsuario = Convert.ToInt32(Session["userid"]);
 
@@ -134,14 +133,15 @@ namespace Tienda
             }
             else
             {
-                DetallePedidoTemporal filtroDpt = detallePedidoTemporalNego.FiltrarDetallePedidoTemporalSegunProducto(idProductoActual, (Convert.ToInt32(Session["userid"])));
+                DetallePedidoTemporal filtroDpt = detallePedidoTemporalNego.FiltrarDetallePedidoTemporalSegunProducto(codigoProductoActual, (Convert.ToInt32(Session["userid"])));
 
                 if (filtroDpt == null)
                 {
                     DetallePedidoTemporal detallePedidoTemporal = new DetallePedidoTemporal();
 
-                    detallePedidoTemporal.Cantidad = Convert.ToInt32(txtCantidad.Text);
-                    detallePedidoTemporal.IdProducto = producto.IdProducto;
+                    detallePedidoTemporal.CodigoProducto = producto.Codigo;
+                    detallePedidoTemporal.NombreProducto = producto.Nombre;
+                    detallePedidoTemporal.Cantidad = Convert.ToInt32(txtCantidad.Text);                    
                     detallePedidoTemporal.Precio = producto.Precio;
                     detallePedidoTemporal.IdUsuario = Convert.ToInt32(Session["userid"]);
 
@@ -152,7 +152,8 @@ namespace Tienda
                     DetallePedidoTemporal detallePedidoTemporal = new DetallePedidoTemporal();
 
                     detallePedidoTemporal.IdDetallePedidoTemporal = filtroDpt.IdDetallePedidoTemporal;
-                    detallePedidoTemporal.IdProducto = filtroDpt.IdProducto;
+                    detallePedidoTemporal.CodigoProducto = filtroDpt.CodigoProducto;
+                    detallePedidoTemporal.NombreProducto = filtroDpt.NombreProducto;
                     detallePedidoTemporal.Cantidad = filtroDpt.Cantidad + Convert.ToInt32(txtCantidad.Text);
                     detallePedidoTemporal.Precio = filtroDpt.Precio;
                     detallePedidoTemporal.IdUsuario = Convert.ToInt32(Session["userid"]);
@@ -171,7 +172,8 @@ namespace Tienda
                 PresupuestoTemporal presupuestoTemporal = new PresupuestoTemporal();
 
                 presupuestoTemporal.Cantidad = Convert.ToInt32(txtCantidad.Text);
-                presupuestoTemporal.IdProducto = producto.IdProducto;
+                presupuestoTemporal.CodigoProducto = producto.Codigo;
+                presupuestoTemporal.NombreProducto = producto.Nombre;
                 presupuestoTemporal.Precio = precioActual;
                 presupuestoTemporal.IdUsuario = Convert.ToInt32(Session["userid"]);
 
@@ -181,14 +183,15 @@ namespace Tienda
             }
             else
             {
-                PresupuestoTemporal filtroDpt = presupuestoNego.FiltrarPresupuestoTemporalSegunProducto(idProductoActual, (Convert.ToInt32(Session["userid"])));
+                PresupuestoTemporal filtroDpt = presupuestoNego.FiltrarPresupuestoTemporalSegunProducto(codigoProductoActual, (Convert.ToInt32(Session["userid"])));
 
                 if (filtroDpt == null)
                 {
                     PresupuestoTemporal presupuestoTemporal = new PresupuestoTemporal();
 
+                    presupuestoTemporal.CodigoProducto = producto.Codigo;
+                    presupuestoTemporal.NombreProducto = producto.Nombre;
                     presupuestoTemporal.Cantidad = Convert.ToInt32(txtCantidad.Text);
-                    presupuestoTemporal.IdProducto = producto.IdProducto;
                     presupuestoTemporal.Precio = precioActual;
                     presupuestoTemporal.IdUsuario = Convert.ToInt32(Session["userid"]);
 
@@ -199,7 +202,8 @@ namespace Tienda
                     PresupuestoTemporal presupuestoTemporal = new PresupuestoTemporal();
 
                     presupuestoTemporal.IdPresupuestoTemporal = filtroDpt.IdPresupuestoTemporal;
-                    presupuestoTemporal.IdProducto = filtroDpt.IdProducto;
+                    presupuestoTemporal.CodigoProducto = filtroDpt.CodigoProducto;
+                    presupuestoTemporal.NombreProducto = filtroDpt.NombreProducto;
                     presupuestoTemporal.Cantidad = filtroDpt.Cantidad + Convert.ToInt32(txtCantidad.Text);
                     presupuestoTemporal.Precio = precioActual;
                     presupuestoTemporal.IdUsuario = Convert.ToInt32(Session["userid"]);
@@ -258,12 +262,12 @@ namespace Tienda
 
             foreach (PresupuestoTemporal presu in listaMargen)
             {
-                Producto produ = productoNego.ObtenerProductoSegunIdProducto(Convert.ToInt32(presu.IdProducto));
+                Producto produ = productoNego.ObtenerProductoSegunIdProducto(presu.CodigoProducto);
 
                 PresupuestoTemporal presupuestoTemporal = new PresupuestoTemporal();
 
                 presupuestoTemporal.IdPresupuestoTemporal = presu.IdPresupuestoTemporal;
-                presupuestoTemporal.IdProducto = produ.IdProducto;
+                presupuestoTemporal.CodigoProducto = produ.Codigo;
                 presupuestoTemporal.Cantidad = presu.Cantidad;
                 presupuestoTemporal.Precio = produ.Precio * (1 + (Convert.ToDecimal(Session["margenid"])) / 100);
                 presupuestoTemporal.IdUsuario = Convert.ToInt32(Session["userid"]);
@@ -283,9 +287,5 @@ namespace Tienda
 
             Response.Redirect("Default.aspx");
         }
-
-        
-
-        
     }
 }

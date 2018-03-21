@@ -25,10 +25,12 @@ namespace Tienda
                 if (Session["usergrupo"].ToString() == "1")
                 {
                     PanelProyectos.Visible = true;
+                    PanelProductos.Visible = true;
                 }
                 else
                 {
                     PanelProyectos.Visible = false;
+                    PanelProductos.Visible = false;
                 }
             }
             MostrarFrillaProductos();
@@ -45,8 +47,7 @@ namespace Tienda
             FileUpload1.SaveAs(csvPath);
 
             DataTable dt = new DataTable();
-            dt.Columns.AddRange(new DataColumn[5] { 
-            new DataColumn("idProducto", typeof(int)),
+            dt.Columns.AddRange(new DataColumn[4] { 
             new DataColumn("codigo", typeof(string)),
             new DataColumn("nombre", typeof(string)),
             new DataColumn("precio", typeof(decimal)),
@@ -68,9 +69,14 @@ namespace Tienda
                 }
             }
 
+
+            //AVERIGUAR SI SE PUEDE GUARDAR UNO X UNO A VER SI ES LENTO O RAPIDO
+
+
+
             //string consString = ConfigurationManager.ConnectionStrings["constr"].ConnectionString;
-            string consString = "data source=COPADE_077\\SQLEXPRESS;initial catalog=tienda;integrated security=True";
-            //string consString = "workstation id=tienda2007.mssql.somee.com;packet size=4096;user id=vaarribas2;pwd=Gkhv156!;data source=tienda2007.mssql.somee.com;persist security info=False;initial catalog=tienda2007";
+            //string consString = "data source=COPADE_077\\SQLEXPRESS;initial catalog=tienda;integrated security=True";
+            string consString = "workstation id=tienda2009.mssql.somee.com;packet size=4096;user id=vaarribas2;pwd=Gkhv156!;data source=tienda2009.mssql.somee.com;persist security info=False;initial catalog=tienda2009";
             using (SqlConnection con = new SqlConnection(consString))
             {
                 using (SqlBulkCopy sqlBulkCopy = new SqlBulkCopy(con))
@@ -92,8 +98,7 @@ namespace Tienda
             FileUpload2.SaveAs(csvPath);
 
             DataTable dt = new DataTable();
-            dt.Columns.AddRange(new DataColumn[5] { 
-            new DataColumn("idProducto", typeof(int)),
+            dt.Columns.AddRange(new DataColumn[4] { 
             new DataColumn("codigo", typeof(string)),
             new DataColumn("nombre", typeof(string)),
             new DataColumn("precio", typeof(decimal)),
@@ -123,8 +128,8 @@ namespace Tienda
             {
                 //Producto producto = new Producto();
 
-                string codigoCsv = row[1].ToString();
-                decimal precioCsv = Convert.ToDecimal(row[3].ToString());
+                string codigoCsv = row[0].ToString();
+                decimal precioCsv = Convert.ToDecimal(row[2].ToString());
 
                 Producto producto = productoNego.ObtenerProducto(codigoCsv);
 
@@ -132,7 +137,6 @@ namespace Tienda
                 {
                     Producto prod = new Producto();
 
-                    prod.IdProducto = producto.IdProducto;
                     prod.Codigo = producto.Codigo;
                     prod.Nombre = producto.Nombre;
                     prod.Precio = precioCsv;
@@ -140,12 +144,18 @@ namespace Tienda
 
                     productoNego.ActualizarProducto(prod);
                 }
+                else if (producto == null)
+                {
+                    Producto prod = new Producto();
+
+                    prod.Codigo = row[0].ToString(); ;
+                    prod.Nombre = row[1].ToString(); ;
+                    prod.Precio = Convert.ToDecimal(row[2].ToString());
+                    prod.Stock = Convert.ToInt32(row[3].ToString());
+
+                    productoNego.GuardarProducto(prod);
+                }
             }
-
-
-            //Bind the DataTable.  
-            //dgvProducto.DataSource = dt;
-            //dgvProducto.DataBind();
 
             Response.Redirect("AltaProducto.aspx");
 

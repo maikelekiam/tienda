@@ -37,16 +37,16 @@ namespace CapaDominio
 			}
 		}
 		
-		private int? idProducto;
-		public virtual int? IdProducto
+		private string codigoProducto;
+		public virtual string CodigoProducto
 		{
 			get
 			{
-				return this.idProducto;
+				return this.codigoProducto;
 			}
 			set
 			{
-				this.idProducto = value;
+				this.codigoProducto = value;
 			}
 		}
 		
@@ -89,16 +89,16 @@ namespace CapaDominio
 			}
 		}
 		
-		private Producto producto;
-		public virtual Producto Producto
+		private string nombreProducto;
+		public virtual string NombreProducto
 		{
 			get
 			{
-				return this.producto;
+				return this.nombreProducto;
 			}
 			set
 			{
-				this.producto = value;
+				this.nombreProducto = value;
 			}
 		}
 		

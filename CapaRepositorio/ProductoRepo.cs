@@ -27,11 +27,11 @@ namespace CapaRepositorio
                 return result;
             }
         }
-        public Producto ObtenerProductoSegunIdProducto(int id)
+        public Producto ObtenerProductoSegunIdProducto(string cod)
         {
             using (ModeloDeDominio modeloDeDominio = new ModeloDeDominio())
             {
-                Producto result = modeloDeDominio.Productos.Where(c => c.IdProducto == id).FirstOrDefault();
+                Producto result = modeloDeDominio.Productos.Where(c => c.Codigo == cod).FirstOrDefault();
 
                 return result;
             }
@@ -55,6 +55,14 @@ namespace CapaRepositorio
                     modeloDeDominio.Delete(prod);
                     modeloDeDominio.SaveChanges();
                 }
+            }
+        }
+        public void GuardarProducto(Producto producto)
+        {
+            using (ModeloDeDominio modeloDeDominio = new ModeloDeDominio())
+            {
+                modeloDeDominio.Add(producto);
+                modeloDeDominio.SaveChanges();
             }
         }
     }

@@ -41,9 +41,9 @@ namespace CapaNegocio
         {
             detallePedidoTemporalRepo.ActualizarDetallePedidoTemporal(detallePedidoTemporal);
         }
-        public DetallePedidoTemporal FiltrarDetallePedidoTemporalSegunProducto(int id, int idUsu)
+        public DetallePedidoTemporal FiltrarDetallePedidoTemporalSegunProducto(string cod, int idUsu)
         {
-            return detallePedidoTemporalRepo.FiltrarDetallePedidoTemporalSegunProducto(id,idUsu);
+            return detallePedidoTemporalRepo.FiltrarDetallePedidoTemporalSegunProducto(cod,idUsu);
         }
     }
 }

@@ -25,11 +25,11 @@ namespace CapaRepositorio
                 modeloDeDominio.SaveChanges();
             }
         }
-        public PresupuestoTemporal FiltrarPresupuestoTemporalSegunProducto(int id, int idUsu)
+        public PresupuestoTemporal FiltrarPresupuestoTemporalSegunProducto(string cod, int idUsu)
         {
             using (ModeloDeDominio modeloDeDominio = new ModeloDeDominio())
             {
-                PresupuestoTemporal result = modeloDeDominio.PresupuestoTemporals.Where(c => c.IdProducto == id).Where(d => d.IdUsuario == idUsu).FirstOrDefault();
+                PresupuestoTemporal result = modeloDeDominio.PresupuestoTemporals.Where(c => c.CodigoProducto == cod).Where(d => d.IdUsuario == idUsu).FirstOrDefault();
                 return result;
             }
         }

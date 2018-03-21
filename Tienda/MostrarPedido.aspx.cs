@@ -23,11 +23,7 @@ namespace Tienda
 
             MostrarPedidoSeleccionado();
 
-            //if (Request.Browser.Browser.Equals("IE"))
-            //{
-            //    BtnImprimir.Visible = false;
-            //    BtnImprimir.Enabled = false;
-            //}
+            logo.Visible = false;
         }
 
         public void MostrarPedidoSeleccionado()
