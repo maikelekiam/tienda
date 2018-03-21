@@ -5,12 +5,15 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
     <div class="container">
+        <div class="col-md-12 col-md-offset-1" runat="server" id="logo">
+            <asp:Image ID="imagen1" runat="server" ImageUrl="~/image/logo.png" />
+        </div>
         <asp:Panel ID="Panel1" CssClass="panel panel-default" runat="server" HorizontalAlign="Left">
-            
-                <div class="panel-heading">
-                    <h3>Detalle del PEDIDO</h3>
-                </div>
-                <br />
+
+            <div class="panel-heading">
+                <h3>Detalle del PEDIDO</h3>
+            </div>
+            <br />
             <div class="form-group" id="areaImprimir">
                 <!-- NUMERO DE PEDIDO -->
                 <div class="form-group">
@@ -34,16 +37,8 @@
                         <asp:GridView ID="dgvCarrito" runat="server" AutoGenerateColumns="false"
                             CssClass="table table-hover" BorderWidth="2px" EmptyDataText="Carrito vacio" ShowHeaderWhenEmpty="true">
                             <Columns>
-                                <asp:TemplateField HeaderStyle-BackColor="#cccccc" HeaderText="Producto" HeaderStyle-HorizontalAlign="Left" HeaderStyle-Font-Bold="true" ItemStyle-HorizontalAlign="Center" HeaderStyle-Width="100">
-                                    <ItemTemplate>
-                                        <asp:Label ID="Label1" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "Producto.Codigo") %>'></asp:Label>
-                                    </ItemTemplate>
-                                </asp:TemplateField>
-                                <asp:TemplateField HeaderStyle-BackColor="#cccccc" HeaderText="Descripcion" HeaderStyle-HorizontalAlign="Left" HeaderStyle-Font-Bold="true" ItemStyle-HorizontalAlign="Center" HeaderStyle-Width="150">
-                                    <ItemTemplate>
-                                        <asp:Label ID="Label1" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "Producto.Nombre") %>'></asp:Label>
-                                    </ItemTemplate>
-                                </asp:TemplateField>
+                                <asp:BoundField HeaderStyle-BackColor="#cccccc" HeaderText="Codigo" DataField="codigoProducto" ItemStyle-HorizontalAlign="Center" HeaderStyle-Width="100" />
+                                <asp:BoundField HeaderStyle-BackColor="#cccccc" HeaderText="Descripcion" DataField="nombreProducto" ItemStyle-HorizontalAlign="Center" HeaderStyle-Width="200" />
                                 <asp:BoundField HeaderStyle-BackColor="#cccccc" HeaderText="Cantidad" DataField="cantidad" ItemStyle-HorizontalAlign="Center" HeaderStyle-Width="100" />
                                 <asp:BoundField HeaderStyle-BackColor="#cccccc" HeaderText="Precio" DataField="precio" ItemStyle-CssClass="t-cost" DataFormatString="{0:c}" ItemStyle-HorizontalAlign="Center" HeaderStyle-Width="100" />
                             </Columns>
@@ -53,10 +48,14 @@
             </div>
 
         </asp:Panel>
-        <input type="button" onclick="printDiv('areaImprimir')" value="Imprimir Presupuesto" />
+        <asp:Button ID="Button1" runat="server" Text="Imprimir PEDIDO" CssClass="btn btn-success" OnClientClick="printDiv('areaImprimir')" />
+        <%--        <input type="button" onclick="printDiv('areaImprimir2')" value="Imprimir PEDIDO" />--%>
     </div>
+
     <script>
         function printDiv(nombreDiv) {
+
+            //var c = document.getElementById('logo').innerHTML;
             var contenido = document.getElementById(nombreDiv).innerHTML;
             var contenidoOriginal = document.body.innerHTML;
 

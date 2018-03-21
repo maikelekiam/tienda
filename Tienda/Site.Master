@@ -121,7 +121,7 @@
                                 <li class="contact-link"><a href="RealizarPedido.aspx">Carrito Actual</a></li>
                                 <li class="contact-link"><a href="ListarPedidos.aspx">Pedidos Realizados</a></li>
 
-                                <li class="dropdown information-link" runat="server" id="productos"><a>Usuarios</a>
+                                <li class="dropdown information-link" runat="server" id="productos"><a>Sistema</a>
                                     <div class="dropdown-menu">
                                         <ul>
                                             <li><a href="AltaUsuario.aspx">Cargar Usuario</a></li>

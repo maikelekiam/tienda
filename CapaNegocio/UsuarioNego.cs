@@ -36,5 +36,13 @@ namespace CapaNegocio
         {
             return usuarioRepo.ObtenerUsuario(id);
         }
+        public Usuario ControlarDuplicadoUsuario(String nombre)
+        {
+            return usuarioRepo.ControlarDuplicadoUsuario(nombre);
+        }
+        public Usuario ObtenerUsuarioSegunCuit(string cuit)
+        {
+            return usuarioRepo.ObtenerUsuarioSegunCuit(cuit);
+        }
     }
 }

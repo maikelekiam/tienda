@@ -21,9 +21,9 @@ namespace CapaNegocio
         {
             presupuestoRepo.GuardarPresupuestoTemporal(presupuestoTemporal);
         }
-        public PresupuestoTemporal FiltrarPresupuestoTemporalSegunProducto(int id, int idUsu)
+        public PresupuestoTemporal FiltrarPresupuestoTemporalSegunProducto(string cod, int idUsu)
         {
-            return presupuestoRepo.FiltrarPresupuestoTemporalSegunProducto(id, idUsu);
+            return presupuestoRepo.FiltrarPresupuestoTemporalSegunProducto(cod, idUsu);
         }
         public void ActualizarPresupuestoTemporal(PresupuestoTemporal presupuestoTemporal)
         {

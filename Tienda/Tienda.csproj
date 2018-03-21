@@ -506,6 +506,10 @@
     <Content Include="js\bootstrap\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="js\bootstrap\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="files\Sample.csv" />
+    <Content Include="files\Archivo 10 productos.csv" />
+    <Content Include="files\Archivo 11 productos.csv" />
+    <Content Include="files\ArchivoProducto.csv" />
+    <Content Include="files\ArchivoUsuarios.csv" />
     <None Include="Project_Readme.html" />
     <Content Include="Site.Mobile.Master" />
     <None Include="Properties\PublishProfiles\tienda_profile.pubxml" />

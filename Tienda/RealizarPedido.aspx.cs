@@ -44,7 +44,7 @@ namespace Tienda
 
                 CalcularSumaTotalCarrito();
 
-                txtNombreUsuario.Text = Session["userlogin"].ToString();
+                txtNombreUsuario.Text = Session["userlogin"].ToString(); //no borrar! sirve
 
                 MostrarPedidosRealizados();
             }
@@ -55,6 +55,7 @@ namespace Tienda
         {
             ddlDia.DataSource = listaDia;
             ddlDia.DataBind();
+
             ddlMes.DataSource = listaMes;
             ddlMes.DataBind();
 
@@ -86,16 +87,19 @@ namespace Tienda
                 }
                 else
                 {
-                    GuardarPedido();
+                    if (ChequearFechas() == true)
+                    {
+                        GuardarPedido();
 
-                    EnviarCorreo();
+                        EnviarCorreo();
 
-                    LimpiarPedido();
+                        LimpiarPedido();
 
-                    VaciarCarrito();
+                        VaciarCarrito();
 
-                    //detallePedidoTemporalNego.BorrarListaDetallePedidoTemporal(idUsuarioActual);
-                    Response.Redirect("Default.aspx");
+                        //detallePedidoTemporalNego.BorrarListaDetallePedidoTemporal(idUsuarioActual);
+                        Response.Redirect("Default.aspx");
+                    }
                 }
             }
             else
@@ -123,7 +127,8 @@ namespace Tienda
                 DetallePedido detallePedido = new DetallePedido();
 
                 detallePedido.IdPedido = idPedidoTemporal;
-                detallePedido.IdProducto = dpt.IdProducto;
+                detallePedido.CodigoProducto = dpt.CodigoProducto;
+                detallePedido.NombreProducto = dpt.NombreProducto;
                 detallePedido.Cantidad = dpt.Cantidad;
                 detallePedido.Precio = dpt.Precio;
 
@@ -170,22 +175,8 @@ namespace Tienda
         }
         public void EnviarCorreo()
         {
-            //string from = txtfrom.Text;
-            //string pass = txtpassword.Text;
-            //string to = txtto.Text;
-            //string msn = txtmensaje.Text;
-
-            //new Email().enviarCorreo(from, pass, to, msn);
-
-
-            //msn = string.Format("Nombre: {1}" + "\n" + "Correo: {2}" + "\n" + "Mensaje:{3}" + "\n", "\n", "juan", "juan@hotmail.com", "mensaje");
-
-            //msn = string.Format("<HTML><h1>{1}</h1></HTML>", "Miguel", txtTotalCarrito.Text);
-
-            //new Email().enviarCorreo("victor.alejandro.arribas@gmail.com", "vaaa2018", "miarcamone@gmail.com", msn);
-
             string msn = "<HTML><p1><h3>Estimado Sr. " + Session["userlogin"].ToString() + "</h3></p1>";
-            
+
             msn += "Nos comunicamos con Ud. para informarle que su pedido se ha realizado con exito.";
             msn += "<br /><br />";
             msn += "A continuacion detallamos el mismo: ";
@@ -194,8 +185,8 @@ namespace Tienda
 
             foreach (DetallePedidoTemporal dpt in listaTemporal)
             {
-                string nombre = productoNego.ObtenerProductoSegunIdProducto(Convert.ToInt32(dpt.IdProducto)).Nombre;
-                string codigo = productoNego.ObtenerProductoSegunIdProducto(Convert.ToInt32(dpt.IdProducto)).Codigo;
+                string nombre = productoNego.ObtenerProductoSegunIdProducto(dpt.CodigoProducto).Nombre;
+                string codigo = productoNego.ObtenerProductoSegunIdProducto(dpt.CodigoProducto).Codigo;
                 msn += "<tr><TD ALIGN=center>" + codigo + "</Td><TD>" + nombre + "</Td><TD ALIGN=right>" + dpt.Cantidad + "</Td><TD ALIGN=right>" + "$ " + dpt.Precio + "</Td></tr>";
             }
             msn += "</TABLE>";
@@ -215,14 +206,55 @@ namespace Tienda
             msn += "<br /><br />";
             msn += "LA EMPRESA</HTML>";
 
-            new Email().enviarCorreo("victor.alejandro.arribas@gmail.com", "vaaa2018", Session["usermail"].ToString(), msn);
+            new Email().enviarCorreo("victor.alejandro.arribas@gmail.com", "clavelchino", Session["usermail"].ToString(), msn);
         }
         public void VaciarCarrito()
         {
-            int id=Convert.ToInt32(Session["userid"].ToString());
+            int id = Convert.ToInt32(Session["userid"].ToString());
 
             detallePedidoTemporalNego.BorrarListaDetallePedidoTemporal(id);
             presupuestoNego.BorrarListaPresupuestoTemporal(id);
+        }
+
+        //protected void ddlDia_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    if (ddlDia.Text == "30" || ddlDia.Text == "31")
+        //    {
+        //        if (ddlMes.Text == "Febrero")
+        //        {
+        //            ddlMes.Text = "Enero";
+        //        }
+        //    }
+        //    if (ddlDia.Text == "31")
+        //    {
+        //        if (ddlMes.Text == "Febrero" || ddlMes.Text == "Abril" || ddlMes.Text == "Junio" || ddlMes.Text == "Setiembre" || ddlMes.Text == "Noviembre")
+        //        {
+        //            ddlMes.Text = "Enero";
+        //        }
+        //    }
+        //}
+
+        public bool ChequearFechas()
+        {
+            if (ddlDia.Text == "30" || ddlDia.Text == "31")
+            {
+                if (ddlMes.Text == "Febrero")
+                {
+                    Page.ClientScript.RegisterStartupScript(this.GetType(), "Correct", "alert('Fecha Ingresada Incorrecta.')", true);
+
+                    return false;
+                }
+            }
+            if (ddlDia.Text == "31")
+            {
+                if (ddlMes.Text == "Febrero" || ddlMes.Text == "Abril" || ddlMes.Text == "Junio" || ddlMes.Text == "Setiembre" || ddlMes.Text == "Noviembre")
+                {
+                    Page.ClientScript.RegisterStartupScript(this.GetType(), "Correct", "alert('Fecha Ingresada Incorrecta.')", true);
+
+                    return false;
+                }
+            }
+            return true;
         }
     }
 }

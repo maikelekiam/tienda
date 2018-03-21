@@ -35,6 +35,8 @@ namespace Tienda
 
                 Session["usergrupo"] = Convert.ToString(usuario.Grupo);
 
+                Session["usercuit"] = Convert.ToString(usuario.Cuit);
+
                 Response.Redirect("Default.aspx");
             }
             else

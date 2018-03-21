@@ -18,25 +18,11 @@ using Telerik.OpenAccess.Metadata;
 using Telerik.OpenAccess.Data.Common;
 using Telerik.OpenAccess.Metadata.Fluent;
 using Telerik.OpenAccess.Metadata.Fluent.Advanced;
-using CapaDominio;
 
 namespace CapaDominio	
 {
 	public partial class Producto
 	{
-		private int idProducto;
-		public virtual int IdProducto
-		{
-			get
-			{
-				return this.idProducto;
-			}
-			set
-			{
-				this.idProducto = value;
-			}
-		}
-		
 		private string codigo;
 		public virtual string Codigo
 		{
@@ -86,33 +72,6 @@ namespace CapaDominio
 			set
 			{
 				this.stock = value;
-			}
-		}
-		
-		private IList<PresupuestoTemporal> presupuestoTemporals = new List<PresupuestoTemporal>();
-		public virtual IList<PresupuestoTemporal> PresupuestoTemporals
-		{
-			get
-			{
-				return this.presupuestoTemporals;
-			}
-		}
-		
-		private IList<DetallePedidoTemporal> detallePedidoTemporals = new List<DetallePedidoTemporal>();
-		public virtual IList<DetallePedidoTemporal> DetallePedidoTemporals
-		{
-			get
-			{
-				return this.detallePedidoTemporals;
-			}
-		}
-		
-		private IList<DetallePedido> detallePedidos = new List<DetallePedido>();
-		public virtual IList<DetallePedido> DetallePedidos
-		{
-			get
-			{
-				return this.detallePedidos;
 			}
 		}
 		

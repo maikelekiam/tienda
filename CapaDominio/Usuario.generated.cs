@@ -102,6 +102,19 @@ namespace CapaDominio
 			}
 		}
 		
+		private string cuit;
+		public virtual string Cuit
+		{
+			get
+			{
+				return this.cuit;
+			}
+			set
+			{
+				this.cuit = value;
+			}
+		}
+		
 		private IList<PresupuestoTemporal> presupuestoTemporals = new List<PresupuestoTemporal>();
 		public virtual IList<PresupuestoTemporal> PresupuestoTemporals
 		{

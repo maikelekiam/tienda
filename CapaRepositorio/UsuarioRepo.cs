@@ -61,5 +61,22 @@ namespace CapaRepositorio
                 return usuario;
             }
         }
+        public Usuario ControlarDuplicadoUsuario(String nombre)
+        {
+            using (ModeloDeDominio modeloDeDominio = new ModeloDeDominio())
+            {
+                return modeloDeDominio.Usuarios.Where(c => c.Nombre == nombre).FirstOrDefault();
+
+            }
+        }
+        public Usuario ObtenerUsuarioSegunCuit(string cuit)
+        {
+            using (ModeloDeDominio modeloDeDominio = new ModeloDeDominio())
+            {
+                Usuario usuario = modeloDeDominio.Usuarios.Where(c => c.Cuit == cuit).FirstOrDefault();
+
+                return usuario;
+            }
+        }
     }
 }
